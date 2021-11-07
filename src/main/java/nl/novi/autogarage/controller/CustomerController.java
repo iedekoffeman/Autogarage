@@ -2,10 +2,7 @@ package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.model.Customer;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.ArrayList;
@@ -46,5 +43,31 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
+   @PostMapping(value = "/customers")
+   public ResponseEntity<Object> addCustomer(@RequestBody Customer customer) {
+        customers.add(customer);
+        return ResponseEntity.created(null).build();
+
+   }
+
+   @PutMapping(value = "/customers/{id}")
+    public ResponseEntity<Object> updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
+        customers.set(id, customer);
+        return ResponseEntity.noContent().build();
+   }
+
+   @PatchMapping(value = "/customers/{id}")
+    public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @RequestBody Customer customer) {
+        Customer existingCustomer = customers.get(id);
+        if (!customer.getFirstname().isEmpty()) {
+            existingCustomer.setFirstname(customer.getFirstname());
+        }
+       if (!customer.getLastname().isEmpty()) {
+           existingCustomer.setLastname(customer.getLastname());
+       }
+
+       customers.set(id, existingCustomer);
+       return ResponseEntity.noContent().build();
+   }
 
 }
