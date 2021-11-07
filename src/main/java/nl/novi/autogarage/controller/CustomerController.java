@@ -1,6 +1,8 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.model.Customer;
+import nl.novi.autogarage.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,20 +28,23 @@ public class CustomerController {
         customers.add(customer2);
     }
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
     @GetMapping(value =  "/customers")
     //ResponseEntity a class which builds a http request.
     public ResponseEntity<Object> getCustomers() {
-        return ResponseEntity.ok(customers); //Jackson (helper) translates object to json
+        return ResponseEntity.ok(customerRepository.findAll()); //Jackson (helper) translates object to json
     }
 
     @GetMapping(value = "/customers/{id}")
     public ResponseEntity<Object> getCustomer(@PathVariable int id) {
-            return ResponseEntity.ok(customers.get(id));
+        return ResponseEntity.ok(customerRepository.findById(id));
     }
 
     @DeleteMapping(value = "/customers/{id}")
     public ResponseEntity<Object> deleteCustomer(@PathVariable int id) {
-        customers.remove(id);
+        customerRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

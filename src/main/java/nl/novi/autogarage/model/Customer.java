@@ -17,6 +17,14 @@ public class Customer {
     //constructor not needed for now (we leave it empty), because it's not needed to assign a value to attributes directly.
 
     //setters and getters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getLastname() {
         return lastname;
     }
