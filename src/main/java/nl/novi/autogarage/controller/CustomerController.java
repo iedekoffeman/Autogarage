@@ -2,6 +2,7 @@ package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.model.Customer;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +36,15 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/customers/{id}")
-        public ResponseEntity<Object> getCustomer(@PathVariable int id) {
+    public ResponseEntity<Object> getCustomer(@PathVariable int id) {
             return ResponseEntity.ok(customers.get(id));
-        }
+    }
+
+    @DeleteMapping(value = "/customers/{id}")
+    public ResponseEntity<Object> deleteCustomer(@PathVariable int id) {
+        customers.remove(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
