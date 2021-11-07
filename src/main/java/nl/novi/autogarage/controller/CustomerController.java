@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class KlantController {
+public class CustomerController {
 
     //attributes
-    private List<String> klanten = new ArrayList<>();
+    private List<String> Customer = new ArrayList<>();
 
     //constructor
-    public KlantController() {
-        klanten.add("Iede");
+    public CustomerController() {
+        Customer.add("Iede");
     }
 
-    @GetMapping(value =  "/klanten")
-    public List<String> getKlanten() {
-        return klanten;
+    @GetMapping(value =  "/customer")
+    public List<String> getCustomer() {
+        return Customer;
     }
 }
