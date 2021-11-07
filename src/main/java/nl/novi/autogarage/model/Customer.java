@@ -1,8 +1,16 @@
 package nl.novi.autogarage.model;
 
+import javax.persistence.*;
+
+@Entity //By using Entity annotation you say this class needs to be a table in our database
+@Table(name = "customers")
 public class Customer {
 
     //attributes
+    @Id //This is the Primary Key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Define that this is a Primary key by using the @GeneratedValue annotation.
+    private int id;
+
     private String firstname;
     private String lastname;
 
