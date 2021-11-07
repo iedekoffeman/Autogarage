@@ -2,6 +2,7 @@ package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.model.Customer;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -28,8 +29,14 @@ public class CustomerController {
     }
 
     @GetMapping(value =  "/customers")
-    //ResponseEntiity a class whicht builds a http request.
+    //ResponseEntity a class which builds a http request.
     public ResponseEntity<Object> getCustomers() {
-        return ResponseEntity.ok(customers);
+        return ResponseEntity.ok(customers); //Jackson (helper) translates object to json
     }
+
+    @GetMapping(value = "/customers/{id}")
+        public ResponseEntity<Object> getCustomer(@PathVariable int id) {
+            return ResponseEntity.ok(customers.get(id));
+        }
+
 }
