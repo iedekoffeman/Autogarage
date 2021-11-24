@@ -1,7 +1,7 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.model.Customer;
-import nl.novi.autogarage.repository.CustomerRepository;
+import nl.novi.autogarage.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,29 +17,29 @@ public class CustomerController {
     //constructor mag leeg blijven
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
     @GetMapping(value =  "/customers")
     //ResponseEntity a class which builds a http request.
     public ResponseEntity<Object> getCustomers() {
-        return ResponseEntity.ok(customerRepository.findAll()); //Jackson (helper) translates object to json
+        return ResponseEntity.ok(customerService.getCustomers()); //Jackson (helper) translates object to json
     }
 
     @GetMapping(value = "/customers/{id}")
     public ResponseEntity<Object> getCustomer(@PathVariable int id) {
-        return ResponseEntity.ok(customerRepository.findById(id));
+        return ResponseEntity.ok(customerService.getCustomer(id));
     }
 
     @DeleteMapping(value = "/customers/{id}")
     public ResponseEntity<Object> deleteCustomer(@PathVariable int id) {
-        customerRepository.deleteById(id);
+        customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
 
    @PostMapping(value = "/customers")
    public ResponseEntity<Object> addCustomer(@RequestBody Customer customer) {
-       Customer newCustomer = customerRepository.save(customer);
-       int newId = customer.getId();
+
+       int newId = customerService.addCustomer(customer);
        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
 
        return ResponseEntity.created(location).build();
@@ -49,35 +49,15 @@ public class CustomerController {
    @PutMapping(value = "/customers/{id}")
     public ResponseEntity<Object> updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
 
-       Customer existingCustomer = customerRepository.findById(id).orElse(null);
-
-       if (!customer.getFirstname().isEmpty()) {
-           existingCustomer.setFirstname(customer.getFirstname());
-       }
-       if (!customer.getLastname().isEmpty()) {
-           existingCustomer.setLastname(customer.getLastname());
-       }
-
-       customerRepository.save(existingCustomer);
-
+       customerService.updateCustomer(id, customer);
        return ResponseEntity.noContent().build();
    }
 
    @PatchMapping(value = "/customers/{id}")
     public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @RequestBody Customer customer) {
 
-        Customer existingCustomer = customerRepository.findById(id).orElse(null);
-
-        if (!(customer.getFirstname() == null) && !customer.getFirstname().isEmpty()) {
-            existingCustomer.setFirstname(customer.getFirstname());
-        }
-        if (!(customer.getLastname() == null) && !customer.getLastname().isEmpty()) {
-           existingCustomer.setLastname(customer.getLastname());
-        }
-
-        customerRepository.save(existingCustomer);
-
-        return ResponseEntity.noContent().build();
+       customerService.partialUpdateCustomer(id, customer);
+       return ResponseEntity.noContent().build();
    }
 
 }
