@@ -1,10 +1,13 @@
 package nl.novi.autogarage.service;
 
+import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -16,7 +19,13 @@ public class CustomerService {
         return customerRepository.findAll(); //Jackson (helper) translates object to json
     }
     public Customer getCustomer(int id) {
-        return customerRepository.findById(id).orElse(null);
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+
+        if(optionalCustomer.isPresent()) {
+            return optionalCustomer.get();
+        } else {
+            throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
+        }
     }
     public void deleteCustomer(int id) {
         customerRepository.deleteById(id);
