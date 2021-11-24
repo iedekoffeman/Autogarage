@@ -5,28 +5,16 @@ import nl.novi.autogarage.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
 
 @RestController
 public class CustomerController {
 
-    //attributes
-    private List<Customer> customers = new ArrayList<>();
 
-    //constructor
-    public CustomerController() {
-        Customer customer1 = new Customer();
-        Customer customer2 = new Customer();
-        customer1.setFirstname("Iede");
-        customer1.setLastname("Koffeman");
-        customer2.setFirstname("Jan");
-        customer2.setLastname("Jansen");
-        customers.add(customer1);
-        customers.add(customer2);
-    }
+    //constructor mag leeg blijven
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -50,29 +38,46 @@ public class CustomerController {
 
    @PostMapping(value = "/customers")
    public ResponseEntity<Object> addCustomer(@RequestBody Customer customer) {
-        customerRepository.save(customer);
-        return ResponseEntity.created(null).build();
+       Customer newCustomer = customerRepository.save(customer);
+       int newId = customer.getId();
+       URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
+
+       return ResponseEntity.created(location).build();
 
    }
 
    @PutMapping(value = "/customers/{id}")
     public ResponseEntity<Object> updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
-        customers.set(id, customer);
-        return ResponseEntity.noContent().build();
-   }
 
-   @PatchMapping(value = "/customers/{id}")
-    public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @RequestBody Customer customer) {
-        Customer existingCustomer = customers.get(id);
-        if (!customer.getFirstname().isEmpty()) {
-            existingCustomer.setFirstname(customer.getFirstname());
-        }
+       Customer existingCustomer = customerRepository.findById(id).orElse(null);
+
+       if (!customer.getFirstname().isEmpty()) {
+           existingCustomer.setFirstname(customer.getFirstname());
+       }
        if (!customer.getLastname().isEmpty()) {
            existingCustomer.setLastname(customer.getLastname());
        }
 
-       customers.set(id, existingCustomer);
+       customerRepository.save(existingCustomer);
+
        return ResponseEntity.noContent().build();
+   }
+
+   @PatchMapping(value = "/customers/{id}")
+    public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @RequestBody Customer customer) {
+
+        Customer existingCustomer = customerRepository.findById(id).orElse(null);
+
+        if (!(customer.getFirstname() == null) && !customer.getFirstname().isEmpty()) {
+            existingCustomer.setFirstname(customer.getFirstname());
+        }
+        if (!(customer.getLastname() == null) && !customer.getLastname().isEmpty()) {
+           existingCustomer.setLastname(customer.getLastname());
+        }
+
+        customerRepository.save(existingCustomer);
+
+        return ResponseEntity.noContent().build();
    }
 
 }
