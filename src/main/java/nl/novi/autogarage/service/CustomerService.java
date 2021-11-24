@@ -15,8 +15,13 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public Iterable<Customer> getCustomers() {
-        return customerRepository.findAll(); //Jackson (helper) translates object to json
+    public Iterable<Customer> getCustomers(String firstname) {
+        if(firstname.isEmpty()) {
+            return customerRepository.findAll();//Jackson (helper) translates object to json
+        } else {
+            return customerRepository.findAllByFirstnameContainingIgnoreCase(firstname);
+        }
+
     }
     public Customer getCustomer(int id) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);

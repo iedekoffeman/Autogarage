@@ -21,8 +21,8 @@ public class CustomerController {
 
     @GetMapping(value =  "/customers")
     //ResponseEntity a class which builds a http request.
-    public ResponseEntity<Object> getCustomers() {
-        return ResponseEntity.ok(customerService.getCustomers()); //Jackson (helper) translates object to json
+    public ResponseEntity<Object> getCustomers(@RequestParam(name="firstname", defaultValue="") String firstname) {
+        return ResponseEntity.ok(customerService.getCustomers(firstname)); //Jackson (helper) translates object to json
     }
 
     @GetMapping(value = "/customers/{id}")
