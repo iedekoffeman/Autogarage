@@ -36,5 +36,18 @@ public class CarController {
         return ResponseEntity.created(location).build();
 
     }
+    @PutMapping(value = "/cars/{id}")
+    public ResponseEntity<Object> updateCar(@PathVariable int id, @RequestBody Car car) {
+
+        carService.updateCar(id, car);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping(value = "/cars/{id}")
+    public ResponseEntity<Object> partialupdateCar(@PathVariable int id, @RequestBody Car car) {
+
+        carService.partialUpdateCar(id, car);
+        return ResponseEntity.noContent().build();
+    }
 
 }

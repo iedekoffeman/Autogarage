@@ -30,5 +30,23 @@ public class CarService {
         return car.getId();
 
     }
+    public void updateCar(int id, Car car) {
+        Car existingCar = carRepository.findById(id).orElse(null);
+
+        if (!car.getLicenseplate().isEmpty()) {
+            existingCar.setLicenseplate(car.getLicenseplate());
+        }
+
+        carRepository.save(existingCar);
+    }
+    public void partialUpdateCar(int id, Car car) {
+        Car existingCar = carRepository.findById(id).orElse(null);
+
+        if (!(car.getLicenseplate() == null) && !car.getLicenseplate().isEmpty()) {
+            existingCar.setLicenseplate(car.getLicenseplate());
+        }
+
+        carRepository.save(existingCar);
+    }
 
 }
