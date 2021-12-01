@@ -4,10 +4,12 @@ import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
+//Toevoegen van exceptions
+//Toevoegen put en patch aan postman
 
 @Service
 public class CustomerService {

@@ -32,6 +32,7 @@ public class CustomerController {
 
     @DeleteMapping(value = "/customers/{id}")
     public ResponseEntity<Object> deleteCustomer(@PathVariable int id) {
+
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
@@ -47,14 +48,14 @@ public class CustomerController {
    }
 
    @PutMapping(value = "/customers/{id}")
-    public ResponseEntity<Object> updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
+   public ResponseEntity<Object> updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
 
        customerService.updateCustomer(id, customer);
        return ResponseEntity.noContent().build();
    }
 
    @PatchMapping(value = "/customers/{id}")
-    public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @RequestBody Customer customer) {
+   public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @RequestBody Customer customer) {
 
        customerService.partialUpdateCustomer(id, customer);
        return ResponseEntity.noContent().build();
