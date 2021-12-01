@@ -21,4 +21,10 @@ public class CarService {
 
     }
 
+    public int addCar(Car car) {
+        Car newCar = carRepository.save(car);
+        return car.getId();
+
+    }
+
 }
