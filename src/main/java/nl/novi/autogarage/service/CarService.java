@@ -1,9 +1,12 @@
 package nl.novi.autogarage.service;
 
+import nl.novi.autogarage.exception.BadRequestException;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CarService {
@@ -20,12 +23,17 @@ public class CarService {
         }
 
     }
-
     public void deleteCar(int id) {
         carRepository.deleteById(id);
     }
-
     public int addCar(Car car) {
+
+        String licenseplate = car.getLicenseplate();
+        List<Car> cars = (List<Car>) carRepository.findAllByLicenseplate(licenseplate);
+        if(cars.size()!=0) {
+            throw new BadRequestException("License plate number already exists!!");
+        }
+
         Car newCar = carRepository.save(car);
         return car.getId();
 

@@ -1,5 +1,6 @@
 package nl.novi.autogarage.controller;
 
+import nl.novi.autogarage.exception.BadRequestException;
 import nl.novi.autogarage.exception.RecordNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,10 @@ public class ExceptionController {
     @ExceptionHandler(value = RecordNotFoundException.class)
     public ResponseEntity<Object> exception(RecordNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+    @ExceptionHandler(value = BadRequestException.class)
+    public ResponseEntity<Object> exception(BadRequestException exception) {
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
 }
