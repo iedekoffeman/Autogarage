@@ -20,6 +20,13 @@ public class CarController {
         return ResponseEntity.ok(carService.getCars(licenseplate));
     }
 
+    @DeleteMapping(value = "/cars/{id}")
+    public ResponseEntity<Object> deleteCar(@PathVariable int id) {
+
+        carService.deleteCar(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping(value = "/cars")
     public ResponseEntity<Object> addCar(@RequestBody Car car) {
 
