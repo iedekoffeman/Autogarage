@@ -1,5 +1,6 @@
 package nl.novi.autogarage.service;
 
+import nl.novi.autogarage.dto.CustomerRequestDto;
 import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.repository.CustomerRepository;
@@ -37,7 +38,12 @@ public class CustomerService {
     public void deleteCustomer(int id) {
         customerRepository.deleteById(id);
     }
-    public int addCustomer(Customer customer) {
+    public int addCustomer(CustomerRequestDto customerRequestDto) {
+
+        Customer customer = new Customer();
+        customer.setFirstname(customerRequestDto.getFirstname());
+        customer.setLastname(customerRequestDto.getLastname());
+
         Customer newCustomer = customerRepository.save(customer);
         return customer.getId();
 
