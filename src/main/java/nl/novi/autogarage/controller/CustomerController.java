@@ -1,6 +1,7 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.dto.CustomerRequestDto;
+import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,16 @@ public class CustomerController {
        customerService.partialUpdateCustomer(id, customer);
        return ResponseEntity.noContent().build();
    }
+
+    @GetMapping(value = "/customers/{id}/cars")
+    public ResponseEntity<Object> getCustomerCars(@PathVariable int id) {
+        return ResponseEntity.ok(customerService.getCustomerCars(id));
+    }
+
+    @PostMapping(value = "/customers/{id}/cars")
+    public ResponseEntity<Object> addCustomerCar(@PathVariable int id, @RequestBody Car car) {
+        customerService.addCustomerCar(id, car);
+        return ResponseEntity.created(null).build();
+    }
 
 }

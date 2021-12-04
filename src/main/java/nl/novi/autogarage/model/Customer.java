@@ -1,6 +1,8 @@
 package nl.novi.autogarage.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity //By using Entity annotation you say this class needs to be a table in our database
 @Table(name = "customers")
@@ -13,6 +15,10 @@ public class Customer {
 
     private String firstname;
     private String lastname;
+    //
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")//Koppel kolom is customer_id en die refereerd naar de id van deze class/entiteit
+    private List<Car> cars = new ArrayList<>();
 
     //constructor not needed for now (we leave it empty), because it's not needed to assign a value to attributes directly.
 
@@ -39,5 +45,13 @@ public class Customer {
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 }

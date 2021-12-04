@@ -2,11 +2,14 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.dto.CustomerRequestDto;
 import nl.novi.autogarage.exception.RecordNotFoundException;
+import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.model.Customer;
+import nl.novi.autogarage.repository.CarRepository;
 import nl.novi.autogarage.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 //Toevoegen van exceptions
@@ -17,6 +20,9 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private CarRepository carRepository;
 
     public Iterable<Customer> getCustomers(String firstname) {
         if(firstname.isEmpty()) {
@@ -71,5 +77,38 @@ public class CustomerService {
         }
 
         customerRepository.save(existingCustomer);
+    }
+
+    public Iterable<Car> getCustomerCars(int id) {
+
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+
+        if(optionalCustomer.isPresent()) {
+            Customer customer = optionalCustomer.get();
+            return customer.getCars();
+        } else {
+            throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
+        }
+
+
+    }
+
+    public void addCustomerCar(int id, Car car) {
+
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+
+        if(optionalCustomer.isPresent()) {
+            Customer customer = optionalCustomer.get();
+            List<Car> cars =  customer.getCars();
+
+            carRepository.save(car);
+
+            cars.add(car);
+            customerRepository.save(customer);
+        } else {
+            throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
+        }
+
+
     }
 }
