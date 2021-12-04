@@ -45,7 +45,7 @@ public class CustomerService {
         customer.setLastname(customerRequestDto.getLastname());
 
         Customer newCustomer = customerRepository.save(customer);
-        return customer.getId();
+        return newCustomer.getId();
 
     }
     public void updateCustomer(int id, Customer customer) {

@@ -1,5 +1,6 @@
 package nl.novi.autogarage.service;
 
+import nl.novi.autogarage.dto.CarRequestDto;
 import nl.novi.autogarage.exception.BadRequestException;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.repository.CarRepository;
@@ -26,16 +27,19 @@ public class CarService {
     public void deleteCar(int id) {
         carRepository.deleteById(id);
     }
-    public int addCar(Car car) {
+    public int addCar(CarRequestDto carRequestDto) {
 
-        String licenseplate = car.getLicenseplate();
+        String licenseplate = carRequestDto.getLicenseplate();
         List<Car> cars = (List<Car>) carRepository.findAllByLicenseplate(licenseplate);
         if(cars.size()!=0) {
             throw new BadRequestException("License plate number already exists!!");
         }
 
+        Car car = new Car();
+        car.setLicenseplate(carRequestDto.getLicenseplate());
+
         Car newCar = carRepository.save(car);
-        return car.getId();
+        return newCar.getId();
 
     }
     public void updateCar(int id, Car car) {
