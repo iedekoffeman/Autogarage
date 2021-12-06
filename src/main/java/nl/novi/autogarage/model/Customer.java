@@ -16,8 +16,7 @@ public class Customer {
     private String firstname;
     private String lastname;
     //
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")//Koppel kolom is customer_id en die refereerd naar de id van deze class/entiteit
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> cars = new ArrayList<>();
 
     //constructor not needed for now (we leave it empty), because it's not needed to assign a value to attributes directly.

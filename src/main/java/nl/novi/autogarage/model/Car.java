@@ -1,6 +1,8 @@
 package nl.novi.autogarage.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,11 @@ public class Car {
     private int id;
 
     private String licenseplate;
+
+    @JsonIgnoreProperties("cars")
+    @ManyToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Customer owner;
 
     public int getId() {
         return id;
@@ -28,5 +35,13 @@ public class Car {
 
     public void setLicenseplate(String licenseplate) {
         this.licenseplate = licenseplate;
+    }
+
+    public Customer getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Customer owner) {
+        this.owner = owner;
     }
 }

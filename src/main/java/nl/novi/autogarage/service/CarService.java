@@ -2,12 +2,14 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.dto.CarRequestDto;
 import nl.novi.autogarage.exception.BadRequestException;
+import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarService {
@@ -23,6 +25,15 @@ public class CarService {
             return carRepository.findAllByLicenseplateContainingIgnoreCase(licenseplate);
         }
 
+    }
+    public Car getCar(int id) {
+        Optional<Car> optionalCar = carRepository.findById(id);
+
+        if(optionalCar.isPresent()) {
+            return optionalCar.get();
+        } else {
+            throw new RecordNotFoundException("A Car with ID " + id + " does not exist.");
+        }
     }
     public void deleteCar(int id) {
         carRepository.deleteById(id);

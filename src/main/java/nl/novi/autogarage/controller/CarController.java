@@ -22,6 +22,11 @@ public class CarController {
         return ResponseEntity.ok(carService.getCars(licenseplate));
     }
 
+    @GetMapping(value = "/cars/{id}")
+    public ResponseEntity<Object> getCar(@PathVariable int id) {
+        return ResponseEntity.ok(carService.getCar(id));
+    }
+
     @DeleteMapping(value = "/cars/{id}")
     public ResponseEntity<Object> deleteCar(@PathVariable int id) {
 
