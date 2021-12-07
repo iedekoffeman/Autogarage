@@ -100,9 +100,8 @@ public class CustomerService {
         if(optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
             List<Car> cars =  customer.getCars();
-
+            car.setOwner(customer);
             carRepository.save(car);
-
             cars.add(car);
             customerRepository.save(customer);
         } else {
