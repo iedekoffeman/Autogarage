@@ -1,9 +1,8 @@
 package nl.novi.autogarage.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name= "users")
@@ -20,6 +19,16 @@ public class User {
     private boolean enabled = true;
 
     private String email;
+
+    @OneToMany(
+            targetEntity = Authority.class,
+            mappedBy = "username",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+
+    private Set<Authority> authorities = new HashSet<>();
 
     //getters and setters
     public String getUsername() {
@@ -52,5 +61,21 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Authority> getAuthorities() { return authorities; }
+    public void setAuthorities(Set<Authority> authorities) { this.authorities = authorities; }
+
+    public void addAuthority(Authority authority) {
+        this.authorities.add(authority);
+    }
+    public void addAuthority(String authorityString) {
+        this.authorities.add(new Authority(this.username, authorityString));
+    }
+    public void removeAuthority(Authority authority) {
+        this.authorities.remove(authority);
+    }
+    public void removeAuthority(String authorityString) {
+        this.authorities.removeIf(authority -> authority.getAuthority().equalsIgnoreCase(authorityString));
     }
 }
