@@ -1,7 +1,14 @@
 INSERT INTO users (username, password, enabled, email)
 VALUES
-('user', 'password', TRUE, 'dummy@novi.nl'),
-('admin', 'password', TRUE, 'dummy@novi.nl');
+('user', '$2y$10$pn4mvxgRMiFSelR/8LbTE.VgPVF4eYQFR0bd.vmkznvnesWfnUwxK', TRUE, 'dummy@novi.nl'),
+('admin', '$2y$10$pn4mvxgRMiFSelR/8LbTE.VgPVF4eYQFR0bd.vmkznvnesWfnUwxK', TRUE, 'dummy@novi.nl');
+
+/*In de database moet je ROLE_ gebruiken bij authority*/
+INSERT INTO authorities(username, authority)
+VALUES
+('user', 'ROLE_USER'),
+('admin', 'ROLE_USER'),
+('admin', 'ROLE_ADMIN');
 
 INSERT INTO customers (firstname, lastname)
 VALUES
