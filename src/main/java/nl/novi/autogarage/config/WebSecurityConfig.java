@@ -8,12 +8,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.sound.midi.Patch;
 import javax.sql.DataSource;
+
+import static org.springframework.http.HttpMethod.PATCH;
 
 @Configuration
 @EnableWebSecurity
@@ -63,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    //.antMatchers(PATCH,"/users/{^[\\w]$}/password").authenticated()
+                    .antMatchers(PATCH,"/users/{^[\\w]$}/password").authenticated()
                     .antMatchers("/users/**").hasRole("ADMIN")
                     .antMatchers("/customers/**").hasRole("USER") //Als user mag je bij customers en alles wat erachter komt
                     .antMatchers("/admin/**").hasAnyRole("USER", "ADMIN")//Als admin mag je bij admin en alles wat erachter komt als waar de user rol toegang toe heeft.
@@ -74,10 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .csrf().disable() //cross side forgery token, zorgt ervoor dat er niet een kwetsbaarheid gebruikt kan worden om te hacken. Vooral bij websites van belang. Disablen we daarom.
                     .formLogin().disable();
-                    //.sessionManagement();
-                    //.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         }
-
 
 
 
