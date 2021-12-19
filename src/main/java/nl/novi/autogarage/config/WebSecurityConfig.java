@@ -1,15 +1,20 @@
 package nl.novi.autogarage.config;
 
+import nl.novi.autogarage.security.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
 
@@ -21,14 +26,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         private DataSource  dataSource;
+        private JwtRequestFilter jwtRequestFilter;
 
         @Autowired
-        WebSecurityConfig(DataSource dataSource) {
+        WebSecurityConfig(DataSource dataSource, JwtRequestFilter jwtRequestFilter) {
             this.dataSource = dataSource;
+            this.jwtRequestFilter = jwtRequestFilter;
         }
 
         @Bean
         public PasswordEncoder passwordEncoder() {
+
             return new BCryptPasswordEncoder();
         }
 
@@ -40,13 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Autowired
         public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-            //user + authority uit memory
-           /* auth.inMemoryAuthentication()
-                .withUser("user").password("{noop}password").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}password").roles("USER", "ADMIN");
-           */
-
             //user + authority uit database
             auth.jdbcAuthentication().dataSource(dataSource)
                     .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?")
@@ -54,8 +55,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         }
-        //
-        //antMathcers kijkt naar het path en bekijkt welke users toegang hebben
+
+        @Bean
+        @Override
+        public AuthenticationManager authenticationManagerBean() throws Exception {
+            return super.authenticationManagerBean();
+        }
+
+        @Bean
+        @Override
+        public UserDetailsService userDetailsServiceBean() throws Exception {
+            return super.userDetailsServiceBean();
+        }
+
+        //antMatchers kijkt naar het path en bekijkt welke users toegang hebben
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http
@@ -73,7 +86,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     //.anyRequest().denyAll()// De rest mag niemand zien.
                     .and()
                     .csrf().disable() //cross side forgery token, zorgt ervoor dat er niet een kwetsbaarheid gebruikt kan worden om te hacken. Vooral bij websites van belang. Disablen we daarom.
-                    .formLogin().disable();
+                    .formLogin().disable()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+
+            http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         }
 
 
