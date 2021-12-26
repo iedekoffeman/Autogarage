@@ -1,13 +1,33 @@
 package nl.novi.autogarage.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "appointments")
-public class Appointment {
+import javax.persistence.*;
+import java.time.LocalDate;
 
-    private Date date;
+@MappedSuperclass
+public abstract class Appointment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate appointmentDate;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDate getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    public void setAppointmentDate(LocalDate appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
 }
