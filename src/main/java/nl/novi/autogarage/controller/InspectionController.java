@@ -2,12 +2,14 @@ package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.service.InspectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @RestController
 public class InspectionController {
@@ -16,7 +18,7 @@ public class InspectionController {
     private InspectionService inspectionService;
 
     @GetMapping(value = "/inspection")
-    public ResponseEntity<Object> getInspections(@RequestParam(name = "date", defaultValue="") LocalDate date) {
+    public ResponseEntity<Object> getInspections(@RequestParam(name = "date", defaultValue="") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date)  {
         return ResponseEntity.ok(inspectionService.getInspections(date));
     }
 

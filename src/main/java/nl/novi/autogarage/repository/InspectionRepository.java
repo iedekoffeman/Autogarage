@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Repository
 public interface InspectionRepository extends JpaRepository<Inspection, Integer> {
 
-    Iterable<Inspection> findAllByInspectionDate(LocalDate InspectionDate);
+    Iterable<Inspection> findAllByInspectionDate(Date InspectionDate);
 
 }
