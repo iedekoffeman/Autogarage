@@ -5,7 +5,7 @@ import nl.novi.autogarage.repository.RepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Service
 public class RepairService {
@@ -13,12 +13,12 @@ public class RepairService {
     @Autowired
     private RepairRepository repairRepository;
 
-    public Iterable<Repair> getRepairs(LocalDate inspectionDate) {
+    public Iterable<Repair> getRepairs(Date repairDate) {
 
-        if(inspectionDate == null) {
+        if(repairDate == null) {
             return repairRepository.findAll();
         } else {
-            return repairRepository.findAllByRepairDate(inspectionDate);
+            return repairRepository.findAllByRepairDate(repairDate);
         }
 
     }
