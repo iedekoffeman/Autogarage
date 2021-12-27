@@ -1,16 +1,16 @@
 package nl.novi.autogarage.dto;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class RepairRequestDto {
 
-    private LocalDate appointmentDate;
+    private Date appointmentDate;
 
-    public LocalDate getAppointmentDate() {
+    public Date getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(LocalDate appointmentDate) {
+    public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 }
