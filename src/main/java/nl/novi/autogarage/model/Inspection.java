@@ -1,5 +1,6 @@
 package nl.novi.autogarage.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "inspections")
 public class Inspection extends Appointment {
 
-    @JsonIgnoreProperties("inspections")
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car inspection;

@@ -2,6 +2,7 @@ package nl.novi.autogarage.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Car {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer owner;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "inspection", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Inspection> inspections = new ArrayList<>();
 
