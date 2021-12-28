@@ -1,15 +1,25 @@
 package nl.novi.autogarage.dto;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
+import nl.novi.autogarage.model.AppointmentStatus;
+
+import javax.validation.constraints.Future;
 import java.time.LocalDate;
 
 public class InspectionRequestDto {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotBlank(message = "Please provide a date.")
+    @Future(message = "The date of inspection must be in the future.")
     private LocalDate appointmentDate;
+
+    private AppointmentStatus appointmentStatus;
+
+    public AppointmentStatus getAppointmentStatus() {
+        return appointmentStatus;
+    }
+
+    public void setAppointmentStatus(AppointmentStatus appointmentStatus) {
+        this.appointmentStatus = appointmentStatus;
+    }
 
     public LocalDate getAppointmentDate() {
         return appointmentDate;

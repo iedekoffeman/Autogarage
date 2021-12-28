@@ -16,7 +16,7 @@ public class RepairController {
     @Autowired
     private RepairService repairService;
 
-    @GetMapping(value = "/repair")
+    @GetMapping(value = "/repairs")
     public ResponseEntity<Object> getInspections(@RequestParam(name = "date", defaultValue="") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return ResponseEntity.ok(repairService.getRepairs(date));
     }

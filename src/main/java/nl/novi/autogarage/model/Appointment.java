@@ -12,6 +12,9 @@ public abstract class Appointment {
 
     private LocalDate appointmentDate;
 
+    @Enumerated(EnumType.STRING)
+    private AppointmentStatus appointmentStatus;
+
     public int getId() {
         return id;
     }
@@ -26,5 +29,13 @@ public abstract class Appointment {
 
     public void setAppointmentDate(LocalDate appointmentDate) {
         this.appointmentDate = appointmentDate;
+    }
+
+    public AppointmentStatus getAppointmentStatus() {
+        return appointmentStatus;
+    }
+
+    public void setAppointmentStatus(AppointmentStatus appointmentStatus) {
+        this.appointmentStatus = appointmentStatus;
     }
 }

@@ -7,13 +7,5 @@ import javax.persistence.Table;
 @Table(name = "inspections")
 public class Inspection extends Appointment {
 
-    private boolean customerApproved;
 
-    public boolean isCustomerApproved() {
-        return customerApproved;
-    }
-
-    public void setCustomerApproved(boolean customerApproved) {
-        this.customerApproved = customerApproved;
-    }
 }
