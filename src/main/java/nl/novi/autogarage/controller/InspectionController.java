@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @RestController
 public class InspectionController {
@@ -18,7 +17,7 @@ public class InspectionController {
     private InspectionService inspectionService;
 
     @GetMapping(value = "/inspection")
-    public ResponseEntity<Object> getInspections(@RequestParam(name = "date", defaultValue="") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date)  {
+    public ResponseEntity<Object> getInspections(@RequestParam(name = "date", defaultValue="") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date)  {
         return ResponseEntity.ok(inspectionService.getInspections(date));
     }
 

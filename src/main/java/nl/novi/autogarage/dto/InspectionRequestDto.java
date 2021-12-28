@@ -1,16 +1,21 @@
 package nl.novi.autogarage.dto;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 public class InspectionRequestDto {
 
-    private Date appointmentDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotBlank(message = "Please provide a date.")
+    private LocalDate appointmentDate;
 
-    public Date getAppointmentDate() {
+    public LocalDate getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(LocalDate appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 }

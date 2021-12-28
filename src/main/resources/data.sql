@@ -22,3 +22,9 @@ VALUES
     ('GT-512-Z', 1),
     ('XB-392-J', 2);
 
+INSERT INTO inspections (appointment_date, customer_approved)
+VALUES
+    ('2021-12-28', false),
+    ('2021-12-27', false),
+    ('2021-12-26', false);
+

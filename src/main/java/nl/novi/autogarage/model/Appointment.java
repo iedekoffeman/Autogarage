@@ -1,7 +1,7 @@
 package nl.novi.autogarage.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @MappedSuperclass
 public abstract class Appointment {
@@ -10,7 +10,7 @@ public abstract class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Date appointmentDate;
+    private LocalDate appointmentDate;
 
     public int getId() {
         return id;
@@ -20,11 +20,11 @@ public abstract class Appointment {
         this.id = id;
     }
 
-    public Date getAppointmentDate() {
+    public LocalDate getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(LocalDate appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 }
