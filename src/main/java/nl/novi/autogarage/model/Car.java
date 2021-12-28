@@ -4,6 +4,8 @@ package nl.novi.autogarage.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cars")
@@ -20,6 +22,9 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer owner;
+
+    @OneToMany(mappedBy = "inspection", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Inspection> inspections = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -43,5 +48,13 @@ public class Car {
 
     public void setOwner(Customer owner) {
         this.owner = owner;
+    }
+
+    public List<Inspection> getInspections() {
+        return inspections;
+    }
+
+    public void setAppointments(List<Inspection> inspections) {
+        this.inspections = inspections;
     }
 }

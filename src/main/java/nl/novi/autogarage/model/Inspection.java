@@ -1,11 +1,23 @@
 package nl.novi.autogarage.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "inspections")
 public class Inspection extends Appointment {
 
+    @JsonIgnoreProperties("inspections")
+    @ManyToOne
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    private Car inspection;
 
+    public Car getInspection() {
+        return inspection;
+    }
+
+    public void setInspection(Car inspection) {
+        this.inspection = inspection;
+    }
 }

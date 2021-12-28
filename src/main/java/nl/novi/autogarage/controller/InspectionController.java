@@ -24,7 +24,6 @@ public class InspectionController {
 
     @GetMapping(value = "/inspections")
     public ResponseEntity<Object> getInspections(@RequestParam(value = "date", required = false) LocalDate date) {
-
             return ResponseEntity.ok(inspectionService.getInspections(date));
 
 
