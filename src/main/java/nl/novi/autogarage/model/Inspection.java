@@ -1,24 +1,26 @@
 package nl.novi.autogarage.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "inspections")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Inspection extends Appointment {
 
-    @JsonBackReference
+    @JsonIgnoreProperties("inspections")
     @ManyToOne
     @JoinColumn(name = "car_id", referencedColumnName = "id")
-    private Car inspection;
+    private Car scheduledCar;
 
-    public Car getInspection() {
-        return inspection;
+    public Car getScheduledCar() {
+        return scheduledCar;
     }
 
-    public void setInspection(Car inspection) {
-        this.inspection = inspection;
+    public void setScheduledCar(Car scheduledCar) {
+        this.scheduledCar = scheduledCar;
     }
 }

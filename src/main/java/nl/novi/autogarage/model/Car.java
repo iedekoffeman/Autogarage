@@ -1,8 +1,9 @@
 package nl.novi.autogarage.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "cars")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Car {
 
     //attributes
@@ -24,8 +26,7 @@ public class Car {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer owner;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "inspection", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "scheduledCar", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Inspection> inspections = new ArrayList<>();
 
     public int getId() {
@@ -56,7 +57,7 @@ public class Car {
         return inspections;
     }
 
-    public void setAppointments(List<Inspection> inspections) {
+    public void setInspections(List<Inspection> inspections) {
         this.inspections = inspections;
     }
 }
