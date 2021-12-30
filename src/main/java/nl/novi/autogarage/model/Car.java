@@ -29,6 +29,9 @@ public class Car {
     @OneToMany(mappedBy = "scheduledCar", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Inspection> inspections = new ArrayList<>();
 
+    @OneToMany(mappedBy = "scheduledCar", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Repair> repairs = new ArrayList<>();
+
     public int getId() {
         return id;
     }
@@ -59,5 +62,13 @@ public class Car {
 
     public void setInspections(List<Inspection> inspections) {
         this.inspections = inspections;
+    }
+
+    public List<Repair> getRepairs() {
+        return repairs;
+    }
+
+    public void setRepairs(List<Repair> repairs) {
+        this.repairs = repairs;
     }
 }
