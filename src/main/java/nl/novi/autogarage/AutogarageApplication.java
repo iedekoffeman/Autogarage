@@ -14,14 +14,12 @@ public class AutogarageApplication {
         SpringApplication.run(AutogarageApplication.class, args);
     }
 
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource
-                = new ReloadableResourceBundleMessageSource();
-
-        messageSource.setBasename("classpath:messages");
-        messageSource.setDefaultEncoding("UTF-8");
-        return messageSource;
+    @Bean(name = "messageSource")
+    public ReloadableResourceBundleMessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageBundle = new ReloadableResourceBundleMessageSource();
+        messageBundle.setBasename("classpath:messages/messages");
+        messageBundle.setDefaultEncoding("UTF-8");
+        return messageBundle;
     }
 
     @Bean

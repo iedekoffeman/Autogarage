@@ -2,7 +2,10 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.dto.CustomerRequestDto;
 import nl.novi.autogarage.dto.InspectionRequestDto;
+import nl.novi.autogarage.exception.BadRequestException;
 import nl.novi.autogarage.exception.RecordNotFoundException;
+import nl.novi.autogarage.model.AppointmentStatus;
+import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.model.Inspection;
 import nl.novi.autogarage.repository.InspectionRepository;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,16 +48,16 @@ public class InspectionService {
 
     public int addInspection(InspectionRequestDto inspectionRequestDto) {
 
-        Inspection inspection = new Inspection();
-        inspection.setAppointmentDate(inspectionRequestDto.getAppointmentDate());
-        inspection.setAppointmentStatus(inspectionRequestDto.getAppointmentStatus());
-
-        Inspection newInspection = inspectionRepository.save(inspection);
-        return newInspection.getId();
-
+            Inspection inspection = new Inspection();
+            inspection.setAppointmentDate(inspectionRequestDto.getAppointmentDate());
+            inspection.setAppointmentStatus(inspectionRequestDto.getAppointmentStatus());
+            Inspection newInspection = inspectionRepository.save(inspection);
+            return newInspection.getId();
     }
+
     public void updateInspection(int id, Inspection inspection) {
         Inspection existingInspection = inspectionRepository.findById(id).orElse(null);
+
         /*
         if (!inspection.getAppointmentDate().is) {
             existingCustomer.setFirstname(customer.getFirstname());

@@ -25,9 +25,11 @@ public class CustomerService {
     private CarRepository carRepository;
 
     public Iterable<Customer> getCustomers(String firstname) {
+
         if(firstname.isEmpty()) {
             return customerRepository.findAll();//Jackson (helper) translates object to json
         } else {
+
             return customerRepository.findAllByFirstnameContainingIgnoreCase(firstname);
         }
 
