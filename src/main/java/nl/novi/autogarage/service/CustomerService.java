@@ -107,6 +107,7 @@ public class CustomerService {
             cars.add(car);
             customerRepository.save(customer);
         } else {
+
             throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
         }
 

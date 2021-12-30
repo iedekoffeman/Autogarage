@@ -1,19 +1,13 @@
 package nl.novi.autogarage.service;
 
-import nl.novi.autogarage.dto.CustomerRequestDto;
 import nl.novi.autogarage.dto.InspectionRequestDto;
-import nl.novi.autogarage.exception.BadRequestException;
 import nl.novi.autogarage.exception.RecordNotFoundException;
-import nl.novi.autogarage.model.AppointmentStatus;
-import nl.novi.autogarage.model.Car;
-import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.model.Inspection;
 import nl.novi.autogarage.repository.InspectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,30 +49,50 @@ public class InspectionService {
             return newInspection.getId();
     }
 
-    public void updateInspection(int id, Inspection inspection) {
-        Inspection existingInspection = inspectionRepository.findById(id).orElse(null);
+    public void updateInspection(int id, InspectionRequestDto inspectionRequestDto) {
 
-        /*
-        if (!inspection.getAppointmentDate().is) {
-            existingCustomer.setFirstname(customer.getFirstname());
+        Optional<Inspection> optionalInspection = inspectionRepository.findById(id);
+
+        if(optionalInspection.isPresent()) {
+
+            Inspection inspection = optionalInspection.get();
+            inspection.setAppointmentDate(inspectionRequestDto.getAppointmentDate());
+            inspection.setAppointmentStatus(inspectionRequestDto.getAppointmentStatus());
+            inspectionRepository.save(inspection);
+
+        } else {
+
+            throw new RecordNotFoundException("An inspection with ID " + id + " does not exist.");
         }
-        if (!customer.getLastname().isEmpty()) {
-            existingCustomer.setLastname(customer.getLastname());
-        }
-        */
-        inspectionRepository.save(existingInspection);
+
+
     }
-    public void partialUpdateInspection(int id, Inspection inspection) {
-        Inspection existingInspection = inspectionRepository.findById(id).orElse(null);
-    /*
-        if (!(customer.getFirstname() == null) && !customer.getFirstname().isEmpty()) {
-            existingCustomer.setFirstname(customer.getFirstname());
+    public void partialUpdateInspection(int id, InspectionRequestDto inspectionRequestDto) {
+
+        Optional<Inspection> optionalInspection = inspectionRepository.findById(id);
+
+        if(optionalInspection.isPresent()) {
+
+            Inspection inspection = optionalInspection.get();
+
+            if(inspectionRequestDto.getAppointmentDate() != null) {
+
+                inspection.setAppointmentDate(inspectionRequestDto.getAppointmentDate());
+
+            }
+
+            if(inspectionRequestDto.getAppointmentStatus() != null) {
+
+                inspection.setAppointmentStatus(inspectionRequestDto.getAppointmentStatus());
+
+            }
+
+            inspectionRepository.save(inspection);
+
+        } else {
+
+            throw new RecordNotFoundException("An inspection with ID " + id + " does not exist.");
         }
-        if (!(customer.getLastname() == null) && !customer.getLastname().isEmpty()) {
-            existingCustomer.setLastname(customer.getLastname());
-        }
-    */
-        inspectionRepository.save(existingInspection);
     }
 
 

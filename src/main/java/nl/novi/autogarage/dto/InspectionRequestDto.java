@@ -1,13 +1,9 @@
 package nl.novi.autogarage.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import nl.novi.autogarage.model.AppointmentStatus;
-import nl.novi.autogarage.model.Car;
-import nl.novi.autogarage.validation.ValueOfEnum;
 
 import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 

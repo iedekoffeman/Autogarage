@@ -51,16 +51,16 @@ public class InspectionController {
     }
 
     @PutMapping(value = "/inspections/{id}")
-    public ResponseEntity<Object> updateInspection(@PathVariable int id, @RequestBody Inspection inspection) {
+    public ResponseEntity<Object> updateInspection(@PathVariable int id, @Valid @RequestBody InspectionRequestDto inspectionRequestDto) {
 
-        inspectionService.updateInspection(id, inspection);
+        inspectionService.updateInspection(id, inspectionRequestDto);
         return ResponseEntity.noContent().build();
     }
 
     @PatchMapping(value = "/inspections/{id}")
-    public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @RequestBody Inspection inspection) {
+    public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @Valid @RequestBody InspectionRequestDto inspectionRequestDto) {
 
-        inspectionService.partialUpdateInspection(id, inspection);
+        inspectionService.partialUpdateInspection(id, inspectionRequestDto);
         return ResponseEntity.noContent().build();
     }
 
