@@ -1,10 +1,8 @@
 package nl.novi.autogarage.controller;
 
-import nl.novi.autogarage.dto.InspectionRequestDto;
 import nl.novi.autogarage.dto.RepairRequestDto;
 import nl.novi.autogarage.service.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -37,7 +35,7 @@ public class RepairController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value = "/inspections")
+    @PostMapping(value = "/repairs")
     public ResponseEntity<Object> addInspection(@Valid @RequestBody RepairRequestDto repairRequestDto) {
 
         int newId = repairService.addRepair(repairRequestDto);
