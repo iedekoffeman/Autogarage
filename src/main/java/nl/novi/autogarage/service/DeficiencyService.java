@@ -1,12 +1,8 @@
 package nl.novi.autogarage.service;
 
-import nl.novi.autogarage.dto.CustomerRequestDto;
 import nl.novi.autogarage.dto.DeficiencyRequestDto;
 import nl.novi.autogarage.exception.RecordNotFoundException;
-import nl.novi.autogarage.model.Car;
-import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.model.Deficiency;
-import nl.novi.autogarage.model.Inspection;
 import nl.novi.autogarage.repository.DeficiencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
