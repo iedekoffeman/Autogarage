@@ -1,4 +1,4 @@
-package nl.novi.autogarage.controller;
+/*package nl.novi.autogarage.controller;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -31,3 +31,4 @@ public class ValidationHandler extends ResponseEntityExceptionHandler {
 
     }
 }
+*/
