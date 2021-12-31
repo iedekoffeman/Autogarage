@@ -1,13 +1,8 @@
 package nl.novi.autogarage.controller;
 
-import nl.novi.autogarage.dto.CustomerRequestDto;
 import nl.novi.autogarage.dto.InspectionRequestDto;
-import nl.novi.autogarage.exception.BadRequestException;
-import nl.novi.autogarage.model.Customer;
-import nl.novi.autogarage.model.Inspection;
 import nl.novi.autogarage.service.InspectionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
