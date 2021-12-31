@@ -36,7 +36,7 @@ public class DeficiencyController {
     }
 
     @PostMapping(value = "/deficiencies")
-    public ResponseEntity<Object> addCustomer(@Valid @RequestBody DeficiencyRequestDto deficiencyRequestDto) {
+    public ResponseEntity<Object> addDeficiency(@Valid @RequestBody DeficiencyRequestDto deficiencyRequestDto) {
 
         int newId = deficiencyService.addDeficiency(deficiencyRequestDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
