@@ -12,10 +12,8 @@ public class ErrorResponse
         this.details = details;
     }
 
-    //General message about error
     private String message;
 
-    //errors in API request processing
     private List<String> details;
 
     //Setters and Getters
