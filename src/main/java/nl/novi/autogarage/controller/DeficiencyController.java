@@ -1,5 +1,7 @@
 package nl.novi.autogarage.controller;
 
+import nl.novi.autogarage.dto.DeficiencyRequestDto;
+import nl.novi.autogarage.model.Deficiency;
 import nl.novi.autogarage.service.DeficiencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 
+@RestController
 public class DeficiencyController {
 
     @Autowired
@@ -33,7 +36,7 @@ public class DeficiencyController {
     }
 
     @PostMapping(value = "/deficiencies")
-    public ResponseEntity<Object> addCustomer(@Valid @RequestBody deficiencyRequestDto deficiencyRequestDto) {
+    public ResponseEntity<Object> addCustomer(@Valid @RequestBody DeficiencyRequestDto deficiencyRequestDto) {
 
         int newId = deficiencyService.addDeficiency(deficiencyRequestDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();

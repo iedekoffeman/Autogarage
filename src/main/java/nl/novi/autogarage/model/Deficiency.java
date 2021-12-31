@@ -18,7 +18,7 @@ public class Deficiency {
     @JsonIgnoreProperties("deficiencies")
     @ManyToOne
     @JoinColumn(name = "inspection_id", referencedColumnName = "id")
-    private Inspection deficiency;
+    private Inspection deficiencyTest;
 
     public int getId() {
         return id;
@@ -37,10 +37,10 @@ public class Deficiency {
     }
 
     public Inspection getDeficiency() {
-        return deficiency;
+        return deficiencyTest;
     }
 
     public void setDeficiency(Inspection deficiency) {
-        this.deficiency = deficiency;
+        this.deficiencyTest = deficiency;
     }
 }
