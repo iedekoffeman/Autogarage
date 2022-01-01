@@ -32,13 +32,15 @@ public class CustomerController {
     //ResponseEntity a class which builds a http request.
     public ResponseEntity<Object> getCustomers(@RequestParam(required = false) String lastname) {
 
-        if (lastname.isEmpty() || lastname == null) {
+        if (lastname == null || lastname.isEmpty()) {
 
-             return ResponseEntity.ok(customerService.getAllCustomers());
+            return ResponseEntity.ok(customerService.getAllCustomers());
+
 
         } else {
 
             return ResponseEntity.ok(customerService.getCustomerByLastName(lastname)); //Jackson (helper) translates object to json
+
 
         }
     }
