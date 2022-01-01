@@ -4,6 +4,7 @@ import nl.novi.autogarage.security.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -29,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         private JwtRequestFilter jwtRequestFilter;
 
         @Autowired
-        WebSecurityConfig(DataSource dataSource, JwtRequestFilter jwtRequestFilter) {
+        WebSecurityConfig(@Lazy DataSource dataSource, @Lazy JwtRequestFilter jwtRequestFilter) {
             this.dataSource = dataSource;
             this.jwtRequestFilter = jwtRequestFilter;
         }
