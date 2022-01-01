@@ -50,11 +50,11 @@ public class CustomerServiceIntegrationTest {
                 .thenReturn(java.util.Optional.ofNullable(customer));
 
         int id = 4;
-        String expected =  "John";
+        String expected =  "Doe";
 
         Customer found = customerService.getCustomer(id);
 
-        assertEquals(expected, found.getFirstname());
+        assertEquals(expected, found.getLastname());
     }
 
 

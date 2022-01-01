@@ -38,7 +38,7 @@ public class CustomerService {
             return customerRepository.findAll();
     }
 
-    public Iterable<Customer> getCustomerByLastName(String lastname) {
+    public Customer getCustomerByLastName(String lastname) {
 
             return customerRepository.findAllByLastnameContainingIgnoreCase(lastname);
 

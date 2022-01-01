@@ -36,11 +36,32 @@ public class CustomerRepositoryIntegrationTest {
         entityManager.flush();
 
         //when
-        Optional<Customer> found = customerRepository.findById(4);
+        Optional<Customer> found = customerRepository.findById(3);
 
         //then
-        String expected = "John" ;
-        String actual = found.get().getFirstname() ;
+        int expected = 3 ;
+        int actual = found.get().getId() ;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testFindByLastName() {
+
+
+        //given
+        Customer customer = new Customer();
+        customer.setFirstname("John");
+        customer.setLastname("Doe");
+        entityManager.persist(customer);
+        entityManager.flush();
+
+        //when
+        Customer found = customerRepository.findAllByLastnameContainingIgnoreCase("Doe");
+
+        //then
+        String expected = "Doe" ;
+        String actual = found.getLastname();
 
         assertEquals(expected, actual);
     }
