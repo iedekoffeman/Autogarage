@@ -28,14 +28,6 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getCustomer(id));
     }
 
-    @GetMapping(value =  "/{lastname}")
-    //ResponseEntity a class which builds a http request.
-    public ResponseEntity<Object> getCustomersByLastname(@PathVariable String lastname) {
-
-        return ResponseEntity.ok(customerService.getCustomerByLastName(lastname)); //Jackson (helper) translates object to json
-
-    }
-
     @GetMapping(value =  " ")
     //ResponseEntity a class which builds a http request.
     public ResponseEntity<Object> getCustomers(@RequestParam(required = false) String lastname) {
