@@ -44,7 +44,7 @@ public class CustomerService {
 
     }
 
-    public int addCustomer(CustomerRequestDto customerRequestDto) {
+    public int createCustomer(CustomerRequestDto customerRequestDto) {
 
         Customer customer = new Customer();
         customer.setFirstname(customerRequestDto.getFirstname());
