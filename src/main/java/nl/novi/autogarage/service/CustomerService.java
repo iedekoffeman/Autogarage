@@ -24,16 +24,6 @@ public class CustomerService {
     @Autowired
     private CarRepository carRepository;
 
-    public Iterable<Customer> getCustomers(String firstname) {
-
-        if(firstname.isEmpty()) {
-            return customerRepository.findAll();//Jackson (helper) translates object to json
-        } else {
-
-            return customerRepository.findAllByFirstnameContainingIgnoreCase(firstname);
-        }
-
-    }
     public Customer getCustomer(int id) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
 
@@ -43,9 +33,17 @@ public class CustomerService {
             throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
         }
     }
-    public void deleteCustomer(int id) {
-        customerRepository.deleteById(id);
+    public Iterable<Customer> getAllCustomers() {
+
+            return customerRepository.findAll();
     }
+
+    public Iterable<Customer> getCustomerByLastName(String lastname) {
+
+            return customerRepository.findAllByLastnameContainingIgnoreCase(lastname);
+
+    }
+
     public int addCustomer(CustomerRequestDto customerRequestDto) {
 
         Customer customer = new Customer();
@@ -56,6 +54,12 @@ public class CustomerService {
         return newCustomer.getId();
 
     }
+
+
+    public void deleteCustomer(int id) {
+        customerRepository.deleteById(id);
+    }
+
     public void updateCustomer(int id, Customer customer) {
         Customer existingCustomer = customerRepository.findById(id).orElse(null);
 

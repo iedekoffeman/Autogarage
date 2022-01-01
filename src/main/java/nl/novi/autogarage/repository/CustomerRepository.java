@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-    Iterable<Customer> findAllByFirstnameContainingIgnoreCase(String firstname);
+    Iterable<Customer> findAllByLastnameContainingIgnoreCase(String lastname);
 
 }

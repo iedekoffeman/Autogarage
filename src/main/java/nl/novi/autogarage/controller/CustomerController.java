@@ -22,15 +22,32 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping(value =  "/customers")
-    //ResponseEntity a class which builds a http request.
-    public ResponseEntity<Object> getCustomers(@RequestParam(name="firstname", defaultValue="") String firstname) {
-        return ResponseEntity.ok(customerService.getCustomers(firstname)); //Jackson (helper) translates object to json
-    }
-
     @GetMapping(value = "/customers/{id}")
     public ResponseEntity<Object> getCustomer(@PathVariable int id) {
         return ResponseEntity.ok(customerService.getCustomer(id));
+    }
+
+    @GetMapping(value =  "/customers")
+    //ResponseEntity a class which builds a http request.
+    public ResponseEntity<Object> getCustomers() {
+        return ResponseEntity.ok(customerService.getAllCustomers()); //Jackson (helper) translates object to json
+    }
+
+    @GetMapping(value =  "/customers/{lastname}")
+    //ResponseEntity a class which builds a http request.
+    public ResponseEntity<Object> getCustomerByLastName(@RequestParam(name="lastname", required = true) String lastname) {
+        return ResponseEntity.ok(customerService.getCustomerByLastName(lastname));
+    }
+
+
+    @PostMapping(value = "/customers")
+    public ResponseEntity<Object> addCustomer(@Valid @RequestBody CustomerRequestDto customerRequestDto) {
+
+        int newId = customerService.addCustomer(customerRequestDto);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
+
+        return ResponseEntity.created(location).build();
+
     }
 
     @DeleteMapping(value = "/customers/{id}")
@@ -39,16 +56,6 @@ public class CustomerController {
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
-
-   @PostMapping(value = "/customers")
-   public ResponseEntity<Object> addCustomer(@Valid @RequestBody CustomerRequestDto customerRequestDto) {
-
-       int newId = customerService.addCustomer(customerRequestDto);
-       URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
-
-       return ResponseEntity.created(location).build();
-
-   }
 
    @PutMapping(value = "/customers/{id}")
    public ResponseEntity<Object> updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
