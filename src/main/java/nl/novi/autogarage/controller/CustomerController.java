@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
+@RequestMapping(value = "/api/v1/customers")
 public class CustomerController {
 
 
@@ -22,25 +23,35 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping(value = "/customers/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Object> getCustomer(@PathVariable int id) {
         return ResponseEntity.ok(customerService.getCustomer(id));
     }
 
-    @GetMapping(value =  "/customers")
+    @GetMapping(value =  "/{lastname}")
     //ResponseEntity a class which builds a http request.
-    public ResponseEntity<Object> getCustomers() {
-        return ResponseEntity.ok(customerService.getAllCustomers()); //Jackson (helper) translates object to json
+    public ResponseEntity<Object> getCustomersByLastname(@PathVariable String lastname) {
+
+        return ResponseEntity.ok(customerService.getCustomerByLastName(lastname)); //Jackson (helper) translates object to json
+
     }
 
-    @GetMapping(value =  "/customers/{lastname}")
+    @GetMapping(value =  " ")
     //ResponseEntity a class which builds a http request.
-    public ResponseEntity<Object> getCustomerByLastName(@RequestParam(name="lastname", required = true) String lastname) {
-        return ResponseEntity.ok(customerService.getCustomerByLastName(lastname));
+    public ResponseEntity<Object> getCustomers(@RequestParam(required = false) String lastname) {
+
+        if (lastname.isEmpty() || lastname == null) {
+
+             return ResponseEntity.ok(customerService.getAllCustomers());
+
+        } else {
+
+            return ResponseEntity.ok(customerService.getCustomerByLastName(lastname)); //Jackson (helper) translates object to json
+
+        }
     }
 
-
-    @PostMapping(value = "/customers")
+    @PostMapping(value = "")
     public ResponseEntity<Object> addCustomer(@Valid @RequestBody CustomerRequestDto customerRequestDto) {
 
         int newId = customerService.addCustomer(customerRequestDto);
@@ -50,33 +61,33 @@ public class CustomerController {
 
     }
 
-    @DeleteMapping(value = "/customers/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteCustomer(@PathVariable int id) {
 
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
 
-   @PutMapping(value = "/customers/{id}")
+   @PutMapping(value = "/{id}")
    public ResponseEntity<Object> updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
 
        customerService.updateCustomer(id, customer);
        return ResponseEntity.noContent().build();
    }
 
-   @PatchMapping(value = "/customers/{id}")
+   @PatchMapping(value = "/{id}")
    public ResponseEntity<Object> partialupdateCustomer(@PathVariable int id, @RequestBody Customer customer) {
 
        customerService.partialUpdateCustomer(id, customer);
        return ResponseEntity.noContent().build();
    }
 
-    @GetMapping(value = "/customers/{id}/cars")
+    @GetMapping(value = "/{id}/cars")
     public ResponseEntity<Object> getCustomerCars(@PathVariable int id) {
         return ResponseEntity.ok(customerService.getCustomerCars(id));
     }
 
-    @PostMapping(value = "/customers/{id}/cars")
+    @PostMapping(value = "/{id}/cars")
     public ResponseEntity<Object> addCustomerCar(@PathVariable int id, @RequestBody Car car) {
         customerService.addCustomerCar(id, car);
         return ResponseEntity.created(null).build();

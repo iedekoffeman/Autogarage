@@ -40,7 +40,7 @@ public class CustomerService {
 
     public Customer getCustomerByLastName(String lastname) {
 
-            return customerRepository.findAllByLastnameContainingIgnoreCase(lastname);
+            return customerRepository.findByLastnameContainingIgnoreCase(lastname);
 
     }
 

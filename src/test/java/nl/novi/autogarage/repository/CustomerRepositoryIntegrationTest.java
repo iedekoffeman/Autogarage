@@ -57,7 +57,7 @@ public class CustomerRepositoryIntegrationTest {
         entityManager.flush();
 
         //when
-        Customer found = customerRepository.findAllByLastnameContainingIgnoreCase("Doe");
+        Customer found = customerRepository.findByLastnameContainingIgnoreCase("Doe");
 
         //then
         String expected = "Doe" ;
