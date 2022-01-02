@@ -17,11 +17,6 @@ public class DeficiencyService {
     private DeficiencyRepository deficiencyRepository;
 
 
-    public List<Deficiency> getDeficiencies() {
-
-            return deficiencyRepository.findAll();
-
-    }
     public Deficiency getDeficiency(int id) {
         Optional<Deficiency> optionalDeficiency = deficiencyRepository.findById(id);
 
@@ -31,10 +26,17 @@ public class DeficiencyService {
             throw new RecordNotFoundException("A Deficiency with ID " + id + " does not exist.");
         }
     }
+
+    public List<Deficiency> getAllDeficiencies() {
+
+            return deficiencyRepository.findAll();
+
+    }
+
     public void deleteDeficiency(int id) {
         deficiencyRepository.deleteById(id);
     }
-    public int addDeficiency(DeficiencyRequestDto deficiencyRequestDto) {
+    public int createDeficiency(DeficiencyRequestDto deficiencyRequestDto) {
 
         Deficiency deficiency = new Deficiency();
         deficiency.setDescription(deficiencyRequestDto.getDescription());

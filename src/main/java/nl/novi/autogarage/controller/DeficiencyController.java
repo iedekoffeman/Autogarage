@@ -12,47 +12,49 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
+@RequestMapping(value = "/api/v1/deficiencies")
 public class DeficiencyController {
 
     @Autowired
     private DeficiencyService deficiencyService;
 
-    @GetMapping(value =  "/deficiencies")
-    //ResponseEntity a class which builds a http request.
-    public ResponseEntity<Object> getDeficiencies() {
-        return ResponseEntity.ok(deficiencyService.getDeficiencies());
-    }
-
-    @GetMapping(value = "/deficiencies/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Object> getDeficiency(@PathVariable int id) {
         return ResponseEntity.ok(deficiencyService.getDeficiency(id));
     }
 
-    @DeleteMapping(value = "/deficiencies/{id}")
+    @GetMapping(value =  "")
+    //ResponseEntity a class which builds a http request.
+    public ResponseEntity<Object> getAllDeficiencies() {
+        return ResponseEntity.ok(deficiencyService.getAllDeficiencies());
+    }
+
+
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteDeficiency(@PathVariable int id) {
 
         deficiencyService.deleteDeficiency(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value = "/deficiencies")
+    @PostMapping(value = "")
     public ResponseEntity<Object> addDeficiency(@Valid @RequestBody DeficiencyRequestDto deficiencyRequestDto) {
 
-        int newId = deficiencyService.addDeficiency(deficiencyRequestDto);
+        int newId = deficiencyService.createDeficiency(deficiencyRequestDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
 
         return ResponseEntity.created(location).build();
 
     }
 
-    @PutMapping(value = "/deficiencies/{id}")
+    @PutMapping(value = "{id}")
     public ResponseEntity<Object> updateDeficiency(@PathVariable int id, @RequestBody Deficiency deficiency) {
 
         deficiencyService.updateDeficiency(id, deficiency);
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping(value = "/deficiencies/{id}")
+    @PatchMapping(value = "{id}")
     public ResponseEntity<Object> partialupdateDeficiency(@PathVariable int id, @RequestBody Deficiency deficiency) {
 
         deficiencyService.partialUpdateDeficiency(id, deficiency);

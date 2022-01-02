@@ -24,7 +24,7 @@ public class CarController {
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<Object> getCars(@RequestParam(required = false) String licenseplate) {
+    public ResponseEntity<Object> getAllCars(@RequestParam(required = false) String licenseplate) {
 
         if (licenseplate == null || licenseplate.isEmpty()) {
 
@@ -45,9 +45,9 @@ public class CarController {
     }
 
     @PostMapping(value = "")
-    public ResponseEntity<Object> CreateCar(@Valid @RequestBody CarRequestDto carRequestDto) {
+    public ResponseEntity<Object> createCar(@Valid @RequestBody CarRequestDto carRequestDto) {
 
-        int newId = carService.CreateCar(carRequestDto);
+        int newId = carService.createCar(carRequestDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
 
         return ResponseEntity.created(location).build();

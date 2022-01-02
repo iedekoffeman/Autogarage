@@ -42,7 +42,7 @@ public class CarService {
     public void deleteCar(int id) {
         carRepository.deleteById(id);
     }
-    public int CreateCar(CarRequestDto carRequestDto) {
+    public int createCar(CarRequestDto carRequestDto) {
 
         String licenseplate = carRequestDto.getLicenseplate();
         List<Car> cars = (List<Car>) carRepository.findAllByLicenseplateContainingIgnoreCase(licenseplate);
