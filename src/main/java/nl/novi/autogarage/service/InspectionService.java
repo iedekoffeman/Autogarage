@@ -16,16 +16,6 @@ public class InspectionService {
     @Autowired
     private InspectionRepository inspectionRepository;
 
-    public Iterable<Inspection> getInspections(LocalDate appointmentDate) {
-
-        if(appointmentDate == null) {
-            return inspectionRepository.findAll();
-        } else {
-            return inspectionRepository.findAllByAppointmentDate(appointmentDate);
-        }
-
-    }
-
     public Inspection getInspection(int id) {
         Optional<Inspection> optionalInspection = inspectionRepository.findById(id);
 
@@ -36,11 +26,21 @@ public class InspectionService {
         }
     }
 
+    public Iterable<Inspection> getAllInspections(LocalDate appointmentDate) {
+
+        if(appointmentDate == null) {
+            return inspectionRepository.findAll();
+        } else {
+            return inspectionRepository.findAllByAppointmentDate(appointmentDate);
+        }
+
+    }
+
     public void deleteInspection(int id) {
         inspectionRepository.deleteById(id);
     }
 
-    public int addInspection(InspectionRequestDto inspectionRequestDto) {
+    public int createInspection(InspectionRequestDto inspectionRequestDto) {
 
             Inspection inspection = new Inspection();
             inspection.setAppointmentDate(inspectionRequestDto.getAppointmentDate());
