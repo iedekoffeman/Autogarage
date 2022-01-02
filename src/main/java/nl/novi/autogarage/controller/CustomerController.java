@@ -28,7 +28,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getCustomer(id));
     }
 
-    @GetMapping(value =  " ")
+    @GetMapping(value =  "")
     //ResponseEntity a class which builds a http request.
     public ResponseEntity<Object> getCustomers(@RequestParam(required = false) String lastname) {
 
