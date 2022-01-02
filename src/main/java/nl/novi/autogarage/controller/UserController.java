@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/api/v1/users")
 public class UserController {
 
     private UserService userService;
@@ -24,8 +24,8 @@ public class UserController {
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<Object> getUsers() {
-        return ResponseEntity.ok().body(userService.getUsers());
+    public ResponseEntity<Object> getAllUsers() {
+        return ResponseEntity.ok().body(userService.getAllUsers());
     }
 
     @GetMapping(value = "/{username}")
