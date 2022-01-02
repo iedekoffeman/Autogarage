@@ -16,16 +16,6 @@ public class RepairService {
     @Autowired
     private RepairRepository repairRepository;
 
-    public Iterable<Repair> getRepairs(LocalDate appointmentDate) {
-
-        if(appointmentDate == null) {
-            return repairRepository.findAll();
-        } else {
-            return repairRepository.findAllByAppointmentDate(appointmentDate);
-        }
-
-    }
-
     public Repair getRepair(int id) {
         Optional<Repair> optionalRepair = repairRepository.findById(id);
 
@@ -36,11 +26,21 @@ public class RepairService {
         }
     }
 
+    public Iterable<Repair> getAllRepairs(LocalDate appointmentDate) {
+
+        if(appointmentDate == null) {
+            return repairRepository.findAll();
+        } else {
+            return repairRepository.findAllByAppointmentDate(appointmentDate);
+        }
+
+    }
+
     public void deleteRepair(int id) {
         repairRepository.deleteById(id);
     }
 
-    public int addRepair(RepairRequestDto repairRequestDto) {
+    public int createRepair(RepairRequestDto repairRequestDto) {
 
         Repair repair = new Repair();
         repair.setAppointmentDate(repairRequestDto.getAppointmentDate());
