@@ -16,12 +16,6 @@ public class ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
-
-    public List<Item> getItems() {
-
-        return itemRepository.findAll();
-
-    }
     public Item getItem(int id) {
         Optional<Item> optionalItem = itemRepository.findById(id);
 
@@ -31,10 +25,17 @@ public class ItemService {
             throw new RecordNotFoundException("An Item with ID " + id + " does not exist.");
         }
     }
+
+    public List<Item> getAllItems() {
+
+        return itemRepository.findAll();
+
+    }
+
     public void deleteItem(int id) {
         itemRepository.deleteById(id);
     }
-    public int addItem(ItemRequestDto itemRequestDto) {
+    public int createItem(ItemRequestDto itemRequestDto) {
 
         Item item = new Item();
         item.setName(itemRequestDto.getName());
