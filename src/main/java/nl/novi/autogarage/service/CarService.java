@@ -17,15 +17,6 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
-    public Iterable<Car> getCars(String licenseplate) {
-
-        if(licenseplate.isEmpty()) {
-            return carRepository.findAll();
-        } else {
-            return carRepository.findAllByLicenseplateContainingIgnoreCase(licenseplate);
-        }
-
-    }
     public Car getCar(int id) {
         Optional<Car> optionalCar = carRepository.findById(id);
 
@@ -35,13 +26,27 @@ public class CarService {
             throw new RecordNotFoundException("A Car with ID " + id + " does not exist.");
         }
     }
+
+    public Iterable<Car> getAllCars() {
+
+            return carRepository.findAll();
+
+    }
+
+    public Car getCarsByLicensePlate(String licenseplate) {
+
+        return carRepository.findAllByLicenseplateContainingIgnoreCase(licenseplate);
+
+    }
+
     public void deleteCar(int id) {
         carRepository.deleteById(id);
     }
-    public int addCar(CarRequestDto carRequestDto) {
+    public int CreateCar(CarRequestDto carRequestDto) {
 
         String licenseplate = carRequestDto.getLicenseplate();
-        List<Car> cars = (List<Car>) carRepository.findAllByLicenseplate(licenseplate);
+        List<Car> cars = (List<Car>) carRepository.findAllByLicenseplateContainingIgnoreCase(licenseplate);
+
         if(cars.size()!=0) {
             throw new BadRequestException("License plate number already exists!!");
         }

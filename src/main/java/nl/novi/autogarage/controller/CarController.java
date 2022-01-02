@@ -12,45 +12,55 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
+@RequestMapping(value = "/api/v1/cars")
 public class CarController {
 
     @Autowired
     private CarService carService;
 
-    @GetMapping(value = "/cars")
-    public ResponseEntity<Object> getCars(@RequestParam(name = "licenseplate", defaultValue="") String licenseplate) {
-        return ResponseEntity.ok(carService.getCars(licenseplate));
-    }
-
-    @GetMapping(value = "/cars/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Object> getCar(@PathVariable int id) {
         return ResponseEntity.ok(carService.getCar(id));
     }
 
-    @DeleteMapping(value = "/cars/{id}")
+    @GetMapping(value = "")
+    public ResponseEntity<Object> getCars(@RequestParam(required = false) String licenseplate) {
+
+        if (licenseplate == null || licenseplate.isEmpty()) {
+
+            return ResponseEntity.ok(carService.getAllCars());
+
+        } else {
+
+            return ResponseEntity.ok(carService.getCarsByLicensePlate(licenseplate));
+
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteCar(@PathVariable int id) {
 
         carService.deleteCar(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value = "/cars")
-    public ResponseEntity<Object> addCar(@Valid @RequestBody CarRequestDto carRequestDto) {
+    @PostMapping(value = "")
+    public ResponseEntity<Object> CreateCar(@Valid @RequestBody CarRequestDto carRequestDto) {
 
-        int newId = carService.addCar(carRequestDto);
+        int newId = carService.CreateCar(carRequestDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
 
         return ResponseEntity.created(location).build();
 
     }
-    @PutMapping(value = "/cars/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateCar(@PathVariable int id, @RequestBody Car car) {
 
         carService.updateCar(id, car);
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping(value = "/cars/{id}")
+    @PatchMapping(value = "/{id}")
     public ResponseEntity<Object> partialupdateCar(@PathVariable int id, @RequestBody Car car) {
 
         carService.partialUpdateCar(id, car);
