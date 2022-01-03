@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CustomerController.class)
 @ContextConfiguration(classes={AutogarageApplication.class})
 @EnableConfigurationProperties
-public class CustomerControllerIntegrationTest {
+public class CustomerControllerUnitTest {
 
     @Autowired
     private MockMvc mvc;

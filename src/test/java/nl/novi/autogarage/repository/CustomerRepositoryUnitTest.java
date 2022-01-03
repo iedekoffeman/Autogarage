@@ -16,7 +16,7 @@ import java.util.Optional;
 @DataJpaTest
 @ContextConfiguration(classes={AutogarageApplication.class})
 @EnableConfigurationProperties
-public class CustomerRepositoryIntegrationTest {
+public class CustomerRepositoryUnitTest {
 
     @Autowired
     private TestEntityManager entityManager;
