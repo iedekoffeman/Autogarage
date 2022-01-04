@@ -133,7 +133,6 @@ public class CustomerServiceUnitTest {
         customerRequestDto.setLastname("Doe");
 
         customer = new Customer();
-        //customer.setId(1);
         customer.setFirstname(customerRequestDto.getFirstname());
         customer.setLastname(customerRequestDto.getLastname());
 
@@ -142,10 +141,19 @@ public class CustomerServiceUnitTest {
         verify(customerRepository, times(1)).save(customerArgumentCaptor.capture());
         var customer1 = customerArgumentCaptor.getValue();
 
-//        when(customerRepository.save(customer))
-//                .thenReturn(customer);
-
         assertThat(customer1.getFirstname()).isEqualTo(customer.getFirstname());
+    }
+
+    @Test
+    void testDeleteCustomerByID() {
+
+       int customerId = 1;
+
+       customerService.deleteCustomer(customerId);
+
+       verify(customerRepository, times(1)).deleteById(eq(customerId));
+
+
     }
 
 
