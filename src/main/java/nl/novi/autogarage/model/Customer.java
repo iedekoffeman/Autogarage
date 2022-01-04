@@ -16,7 +16,7 @@ public class Customer {
     private String firstname;
     private String lastname;
     //
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> cars = new ArrayList<>();
 
     //constructor not needed for now (we leave it empty), because it's not needed to assign a value to attributes directly.

@@ -4,9 +4,13 @@ import nl.novi.autogarage.AutogarageApplication;
 import nl.novi.autogarage.dto.CustomerRequestDto;
 import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.repository.CustomerRepository;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +42,9 @@ public class CustomerServiceUnitTest {
 
     @Mock
     CustomerRequestDto customerRequestDto;
+
+    @Captor
+    ArgumentCaptor<Customer> customerArgumentCaptor;
 
     @BeforeEach
     public void setUp() {
@@ -121,22 +128,24 @@ public class CustomerServiceUnitTest {
     @Test
     public void testCreateCustomer() {
 
-        customer = new Customer();
-        customer.setFirstname("John");
-        customer.setLastname("Doe");
-
         customerRequestDto = new CustomerRequestDto();
         customerRequestDto.setFirstname("John");
         customerRequestDto.setLastname("Doe");
 
-        when(customerRepository.save(customer))
-                .thenReturn(customer);
+        customer = new Customer();
+        //customer.setId(1);
+        customer.setFirstname(customerRequestDto.getFirstname());
+        customer.setLastname(customerRequestDto.getLastname());
 
+        customerRepository.save(customer);
 
-        int newCustomer = customerService.createCustomer(customerRequestDto);
+        verify(customerRepository, times(1)).save(customerArgumentCaptor.capture());
+        var customer1 = customerArgumentCaptor.getValue();
 
+//        when(customerRepository.save(customer))
+//                .thenReturn(customer);
 
-        assertThat(newCustomer).isEqualTo(customer.getId());
+        assertThat(customer1.getFirstname()).isEqualTo(customer.getFirstname());
     }
 
 
