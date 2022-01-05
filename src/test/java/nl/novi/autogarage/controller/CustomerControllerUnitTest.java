@@ -36,7 +36,7 @@ public class CustomerControllerUnitTest {
     private JwtUtil jwtUtil;
 
     @MockBean
-    private CustomerService service;
+    private CustomerService customerService;
 
     @Test
     public void testEndpointGetAllCustomers() throws Exception {
@@ -46,7 +46,7 @@ public class CustomerControllerUnitTest {
         customer.setLastname("Doe");
         List<Customer> allCustomers = Arrays.asList(customer);
 
-        given(service.getAllCustomers()).willReturn(allCustomers);
+        given(customerService.getAllCustomers()).willReturn(allCustomers);
 
         mvc.perform(get("/api/v1/customers")
                         .contentType(MediaType.APPLICATION_JSON))
