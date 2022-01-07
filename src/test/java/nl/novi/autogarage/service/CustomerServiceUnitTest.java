@@ -9,8 +9,6 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.record.Record;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
@@ -161,7 +159,7 @@ public class CustomerServiceUnitTest {
     }
 
     @Test
-    void testCreateUser() {
+    void testCreateCustomer() {
 
         customerRequestDto = new CustomerRequestDto();
         customerRequestDto.setFirstname("John");
