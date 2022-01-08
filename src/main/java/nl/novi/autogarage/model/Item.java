@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "items")
@@ -16,7 +17,7 @@ public class Item {
     private int id;
 
     private String name;
-    private float price;
+    private BigDecimal price;
 
     @JsonIgnoreProperties("items")
     @ManyToOne
@@ -39,11 +40,11 @@ public class Item {
         this.name = name;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

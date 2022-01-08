@@ -1,9 +1,11 @@
 package nl.novi.autogarage.dto;
 
+import java.math.BigDecimal;
+
 public class ItemRequestDto {
 
     private String name;
-    private float price;
+    private BigDecimal price;
 
     public String getName() {
         return name;
@@ -13,11 +15,11 @@ public class ItemRequestDto {
         this.name = name;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }
