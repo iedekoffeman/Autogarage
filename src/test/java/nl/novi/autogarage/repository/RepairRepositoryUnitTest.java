@@ -26,7 +26,7 @@ public class RepairRepositoryUnitTest {
     private TestEntityManager entityManager;
 
     @Autowired
-    private RepairRepository RepairRepository;
+    private RepairRepository repairRepository;
 
 
     @Test
@@ -41,7 +41,7 @@ public class RepairRepositoryUnitTest {
         entityManager.flush();
 
         //when
-        Optional<Repair> found = RepairRepository.findById(3);
+        Optional<Repair> found = repairRepository.findById(3);
 
         //then
         int expected = 3;

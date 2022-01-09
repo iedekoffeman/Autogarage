@@ -33,7 +33,7 @@ public class CustomerTest {
     private MockMvc mvc;
 
     @Test
-    public void testEndpointCustomers() throws Exception {
+    public void testEndpointGetCustomers() throws Exception {
 
         mvc.perform(get("/api/v1/customers")
                         .with(user("user").roles("USER"))

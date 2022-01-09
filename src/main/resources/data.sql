@@ -28,3 +28,9 @@ VALUES
     ('2021-12-27', 'APPOINTMENT_SCHEDULED', 2),
     ('2021-12-26', 'APPOINTMENT_SCHEDULED',1);
 
+INSERT INTO repairs (appointment_date, appointment_status, car_id)
+VALUES
+    ('2022-01-28', 'APPOINTMENT_SCHEDULED', 1),
+    ('2022-01-27', 'APPOINTMENT_SCHEDULED', 2),
+    ('2022-01-26', 'APPOINTMENT_SCHEDULED',1);
+

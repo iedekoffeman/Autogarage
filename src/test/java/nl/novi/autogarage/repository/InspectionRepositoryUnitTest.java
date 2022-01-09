@@ -29,7 +29,7 @@ public class InspectionRepositoryUnitTest {
     private TestEntityManager entityManager;
 
     @Autowired
-    private InspectionRepository InspectionRepository;
+    private InspectionRepository inspectionRepository;
 
 
     @Test
@@ -44,7 +44,7 @@ public class InspectionRepositoryUnitTest {
         entityManager.flush();
 
         //when
-        Optional<Inspection> found = InspectionRepository.findById(3);
+        Optional<Inspection> found = inspectionRepository.findById(3);
 
         //then
         int expected = 3;
