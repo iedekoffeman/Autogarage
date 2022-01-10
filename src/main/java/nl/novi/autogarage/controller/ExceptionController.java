@@ -68,6 +68,15 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
         return new ResponseEntity(error, HttpStatus.FORBIDDEN);
     }
 
+    @ExceptionHandler(FileStorageException.class)
+    public final ResponseEntity<Object> handleFileStorageException(FileStorageException ex, WebRequest request) {
+        List<String> details = new ArrayList<>();
+        details.add(ex.getLocalizedMessage());
+        ErrorResponse error = new ErrorResponse("Could not create storage location", details);
+        return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
+    }
+
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {

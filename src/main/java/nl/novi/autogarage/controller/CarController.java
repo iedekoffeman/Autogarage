@@ -4,10 +4,15 @@ import nl.novi.autogarage.dto.CarRequestDto;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.annotation.Resource;
+import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -66,5 +71,18 @@ public class CarController {
         carService.partialUpdateCar(id, car);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping(value = "/{id}/licenseregistrationfile/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, "application/json"})
+    public ResponseEntity<Object> uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file  ) {
+
+        int upatedId = carService.uploadFile(id, file);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(upatedId).toUri();
+
+        return ResponseEntity.created(location).body(location);
+    }
+
+
 
 }

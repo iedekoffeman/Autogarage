@@ -22,6 +22,7 @@ public class Car {
     private int id;
 
     private String licenseplate;
+    private String licenseRegistrationFileName ;
 
     @JsonIgnoreProperties("cars")
     @ManyToOne
@@ -49,6 +50,14 @@ public class Car {
 
     public void setLicenseplate(String licenseplate) {
         this.licenseplate = licenseplate;
+    }
+
+    public String getLicenseRegistrationFileName() {
+        return licenseRegistrationFileName;
+    }
+
+    public void setLicenseRegistrationFileName(String licenseRegistrationFileName) {
+        this.licenseRegistrationFileName = licenseRegistrationFileName;
     }
 
     public Customer getOwner() {
