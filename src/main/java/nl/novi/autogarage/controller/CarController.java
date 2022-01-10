@@ -75,10 +75,10 @@ public class CarController {
     @PostMapping(value = "/{id}/licenseregistrationfile/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, "application/json"})
     public ResponseEntity<Object> uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file  ) {
 
-        int upatedId = carService.uploadFile(id, file);
+        int updatedId = carService.uploadFile(id, file);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(upatedId).toUri();
+                .buildAndExpand(updatedId).toUri();
 
         return ResponseEntity.created(location).body(location);
     }

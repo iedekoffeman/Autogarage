@@ -8,7 +8,6 @@ public class CarRequestDto {
     //attributes
     private String licenseplate;
     private String licenseRegistrationFileName ;
-    private MultipartFile file;
 
     public String getLicenseplate() {
         return licenseplate;
@@ -26,12 +25,5 @@ public class CarRequestDto {
         this.licenseRegistrationFileName = licenseRegistrationFileName;
     }
 
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
 
 }
