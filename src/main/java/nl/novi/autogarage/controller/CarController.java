@@ -14,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import org.springframework.core.io.Resource;
 import javax.print.attribute.standard.Media;
+import javax.servlet.Servlet;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -78,10 +79,11 @@ public class CarController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file  ) {
 
-        int updatedId = carService.uploadFile(id, file);
+        String licenseRegistrationFileName = carService.uploadFile(id, file);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(updatedId).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/" + licenseRegistrationFileName)
+                .buildAndExpand().toUri();
+
 
         return ResponseEntity.created(location).body(location);
     }

@@ -106,7 +106,7 @@ public class CarService {
         carRepository.save(existingCar);
     }
 
-    public int uploadFile(int id, MultipartFile file) {
+    public String uploadFile(int id, MultipartFile file) {
 
         String originalFilename = StringUtils.cleanPath(file.getOriginalFilename());
         Path copyLocation = this.uploads.resolve(file.getOriginalFilename());
@@ -129,7 +129,7 @@ public class CarService {
 
         Car savedCar = carRepository.save(existingCar);
 
-        return savedCar.getId();
+        return savedCar.getLicenseRegistrationFileName().toString();
 
     }
 
