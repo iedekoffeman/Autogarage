@@ -73,7 +73,9 @@ public class CarController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value = "/{id}/licenseregistrationfile/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, "application/json"})
+    @PostMapping(value = "/{id}/licenseregistrationfile/upload",
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, "application/json"},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file  ) {
 
         int updatedId = carService.uploadFile(id, file);
