@@ -4,6 +4,7 @@ import nl.novi.autogarage.dto.CarRequestDto;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.annotation.Resource;
+import org.springframework.core.io.Resource;
 import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
 import java.net.URI;
@@ -81,6 +82,16 @@ public class CarController {
                 .buildAndExpand(updatedId).toUri();
 
         return ResponseEntity.created(location).body(location);
+    }
+
+    @GetMapping("/{id}/licenseregistrationfile/download")
+    public ResponseEntity downloadFile(@PathVariable int id) {
+        Resource resource = carService.downloadFile(id);
+        String mediaType = "application/octet-stream";
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(mediaType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
     }
 
 

@@ -2,17 +2,21 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.dto.CarRequestDto;
 import nl.novi.autogarage.exception.BadRequestException;
+import nl.novi.autogarage.exception.FileNotFoundException;
 import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.exception.FileStorageException;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -128,5 +132,35 @@ public class CarService {
         return savedCar.getId();
 
     }
+
+    public Resource downloadFile(int id) {
+        Optional<Car> existingCar = carRepository.findById(id);
+
+        Resource resource  = null;
+        if (existingCar.isPresent()) {
+            String filename = existingCar.get().getLicenseRegistrationFileName();
+            Path path = this.uploads.resolve(filename);
+
+            try {
+                resource = new UrlResource(path.toUri());
+                if(resource.exists()) {
+                    return resource;
+                } else {
+
+                    throw new FileNotFoundException("File not found " + filename);
+
+                }
+
+            } catch (MalformedURLException e) {
+
+                throw new FileNotFoundException("File not found " + filename);
+            }
+        }
+        else {
+            throw new RecordNotFoundException("An car with ID" + id + " does not exists.");
+        }
+
+    }
+
 
 }
