@@ -30,14 +30,14 @@ public class RepairController {
 
     }
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<Object> deleteInspection(@PathVariable int id) {
+    public ResponseEntity<Object> deleteRepair(@PathVariable int id) {
 
         repairService.deleteRepair(id);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping(value = "")
-    public ResponseEntity<Object> createInspection(@Valid @RequestBody RepairRequestDto repairRequestDto) {
+    public ResponseEntity<Object> createRepair(@Valid @RequestBody RepairRequestDto repairRequestDto) {
 
         int newId = repairService.createRepair(repairRequestDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newId).toUri();
