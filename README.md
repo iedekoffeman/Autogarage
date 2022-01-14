@@ -29,7 +29,6 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 #### Er is een export van postman toegevoegd in de documentation directory van dit project.
 <br/>
-<br/>
 
 #### Users die worden toegevoegd aan de database bij het opstarten van het project
 
