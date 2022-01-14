@@ -3,8 +3,8 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 
 ## Inhoudsopgave
-- [Vooraf](#vooraf)
-- [Users die worden toegevoegd aan de database bij het opstarten van het project](#users-die-worden-toegevoegd-aan-de-database-bij-het-opstarten-van-het-project)
+* [Vooraf](#vooraf)
+  + [Users die worden toegevoegd aan de database bij het starten van het project](#users-die-worden-toegevoegd-aan-de-database-bij-het-opstarten-van-het-project)
 - [Installatie](#Installatie)
  * [Endpoints](#endpoints)
       + [Authorization](#authorization)
