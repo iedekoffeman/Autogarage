@@ -40,14 +40,13 @@ Met deze applicatie kan een autogarage het proces van keuringen en reparaties ro
 
 ## Installatie
 
-* Dit project is het beste te runnen met de IDE IntelIj van Netbrains. <br/>
+* Dit project is het beste te runnen met de IDE IntelIj van Jetbrains. <br/>
 * De applicatie maakt gebruik van een PostgresSQL database. Zorg dus dat je PostgreSQL geinstalleerd hebt.
 
 1. Installeer de InteliJ IDE als dit nog niet gedaan is.<br/>
-    Dit kun je doen door in de menu bar naar Git > Clone te gaan, daar de URL van deze repository in te vullen en op clone te klikken. 
-   <br/>
-   </br>
-2. Laad het project in Intelij. Maven zal het synchroniseren van dependencies starten.
+    <br/>
+2. Laad het project in Intelij. Maven zal het synchroniseren van dependencies starten.<br/>
+   Het inladen van het project kun je doen door in de menu bar naar Git > Clone te gaan, daar de URL van deze repository in te vullen en op clone te klikken.
    <br/>
    </br>
 3. Verander de PostgreSQL credentials in application-dev.properties naar jouw eigen local settings:<br/>
