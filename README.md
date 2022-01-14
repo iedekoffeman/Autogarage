@@ -1,5 +1,5 @@
-## Autogarage applicatie
-Met deze applicatie kan een autogarage het proces van keuringen en reparaties rondom auto's en klanten automatiseren. De applicatie biedt o.a. de mogelijkheid om klanten en auto's aan te maken. Keuringen en reparaties aan auto's te koppelen en meer. De applicatie kent Authenticatie en Authorizatie zodat data beschermd is.
+## Autogarage 
+Met dit project kan een autogarage het proces van keuringen en reparaties rondom auto's en klanten automatiseren. De applicatie biedt o.a. de mogelijkheid om klanten en auto's aan te maken. Keuringen en reparaties aan auto's te koppelen en meer. De applicatie kent Authenticatie en Authorizatie zodat data beschermd is.
 
 
 ## Inhoudsopgave
