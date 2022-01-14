@@ -26,6 +26,8 @@ Met deze applicatie kan een autogarage het proces van keuringen en reparaties ro
 3. Cross-Origin is aangezet voor alle endpoints en alle origins.
 
 4. Authorization verplicht. (JWT token) zie sectie endpoints. 
+
+#### Er is een export van postman toegevoegd in de documentation directory van dit project.
 <br/>
 <br/>
 
@@ -153,4 +155,3 @@ De token verkrijg je door eerst het Authorization endpoint uit te voeren. De tok
 
 
 
-#### Er is een export van postman toegevoegd in de documentation directory van dit project.
