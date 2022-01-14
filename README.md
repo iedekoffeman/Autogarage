@@ -4,8 +4,8 @@ Met deze applicatie kan een autogarage het proces van keuringen en reparaties ro
 
 ## Inhoudsopgave
 - [Vooraf](#vooraf)
-- [Installatie](#Installatie)
 - [Users die worden toegevoegd aan de database bij het opstarten van het project](#users-die-worden-toegevoegd-aan-de-database-bij-het-opstarten-van-het-project)
+- [Installatie](#Installatie)
  * [Endpoints](#endpoints)
       + [Authorization](#authorization)
       + [Users](#users)
@@ -26,7 +26,17 @@ Met deze applicatie kan een autogarage het proces van keuringen en reparaties ro
 3. Cross-Origin is aangezet voor alle endpoints en alle origins.
 
 4. Authorization verplicht. (JWT token) zie sectie endpoints. 
+<br/>
+<br/>
 
+#### Users die worden toegevoegd aan de database bij het opstarten van het project
+
+| Username | Password | Role                      |
+|----------|----------|---------------------------|
+| Jan      | password | Administratief medewerker |
+| Piet     | password | Monteur                   |
+
+<br>
 
 ## Installatie
 
@@ -55,15 +65,6 @@ Met deze applicatie kan een autogarage het proces van keuringen en reparaties ro
    Als alles klopt zijn de endpoints beschikbaar. 
 <br/>
 <br/>
-
-#### Users die worden toegevoegd aan de database bij het opstarten van het project
-
-| Username | Password | Role                      |
-|----------|----------|---------------------------|
-| Jan      | password | Administratief medewerker |
-| Piet     | password | Monteur                   |
-
-<br>
 
 ### Endpoints
 
