@@ -1,8 +1,8 @@
-#Autogarage applicatie
+## Autogarage applicatie
 Met deze applicatie kan een autogarage het proces van keuringen en reparaties rondom auto's en klanten automatiseren. De applicatie biedt o.a. de mogelijkheid om klanten en auto's aan te maken. Keuringen en reparaties aan auto's te koppelen en meer. De applicatie kent Authenticatie en Authorizatie zodat data beschermd is.
 
 
-#Inhoudsopgave
+## Inhoudsopgave
 - [Vooraf](#vooraf)
 - [Installatie](#Installatie)
 - [Users die worden toegevoegd aan de database bij het opstarten van het project](#users-die-worden-toegevoegd-aan-de-database-bij-het-opstarten-van-het-project)
@@ -15,9 +15,7 @@ Met deze applicatie kan een autogarage het proces van keuringen en reparaties ro
       + [Repairs](#repairs)
       + [Deficiencies](#deficiencies)
       + [Items](#items)
- - [Er is een export van postman toegevoegd in de documentation directory van dit project.](#er-is-een-export-van-postman-toegevoegd-in-de-documentation-directory-van-dit-project)
-
-
+      
 ## Vooraf
 
 1. Java version 11
@@ -30,7 +28,7 @@ Met deze applicatie kan een autogarage het proces van keuringen en reparaties ro
 4. Authorization verplicht. (JWT token) zie sectie endpoints. 
 
 
-#Installatie
+## Installatie
 
 * Dit project is het beste te runnen met de IDE IntelIj van Netbrains. <br/>
 * De applicatie maakt gebruik van een PostgresSQL database. Zorg dus dat je PostgreSQL geinstalleerd hebt.
