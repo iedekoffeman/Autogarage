@@ -3,6 +3,7 @@ package nl.novi.autogarage.controller;
 import nl.novi.autogarage.dto.CarRequestDto;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.service.CarService;
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.core.io.Resource;
 import javax.print.attribute.standard.Media;
 import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -77,12 +79,14 @@ public class CarController {
     @PostMapping(value = "/{id}/licenseregistrationfile/upload",
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, "application/json"},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Object> uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file  ) {
+    public ResponseEntity<Object> uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file, HttpServletRequest request ) {
 
         String licenseRegistrationFileName = carService.uploadFile(id, file);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/" + licenseRegistrationFileName)
-                .buildAndExpand().toUri();
+        URI location = ServletUriComponentsBuilder.fromRequestUri(request)
+                .replacePath("/uploads/" + licenseRegistrationFileName)
+                .build()
+                .toUri();
 
 
         return ResponseEntity.created(location).body(location);
