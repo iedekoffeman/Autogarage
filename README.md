@@ -108,6 +108,8 @@ De token verkrijg je door eerst het Authorization endpoint uit te voeren. De tok
 * GET /api/v1/customers/{id}
 * PUT /api/v1/customers/{id}
 * PATCH /api/v1/customers/{id}
+* GET /api/v1/customers/{id}/cars
+* POST /api/v1/customers/{id}/cars
 
 #### Cars
 * GET   /api/v1/cars
