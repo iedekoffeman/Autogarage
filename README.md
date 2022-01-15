@@ -118,8 +118,12 @@ De token verkrijg je door eerst het Authorization endpoint uit te voeren. De tok
 * GET /api/v1/cars/{id}
 * PUT /api/v1/cars/{id}
 * PATCH /api/v1/cars/{id}
-* POST /api/v1/cars/{id}/licenseregistrationfile/upload
+* POST /api/v1/cars/{id}/licenseregistrationfile/upload<br/>
+>  **_NOTE:_**
+  Voor upload files worden alleen PDF bestanden geaccepteerd die 500KB of kleiner zijn.
+
 * GET /api/v1/cars/{id}/licenseregistrationfile/download
+
 
 #### Inspections
 * GET   /api/v1/inspections

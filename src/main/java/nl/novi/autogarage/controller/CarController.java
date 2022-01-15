@@ -78,7 +78,7 @@ public class CarController {
 
     @PostMapping(value = "/{id}/licenseregistrationfile/upload",
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, "application/json"},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_PDF_VALUE})
     public ResponseEntity<Object> uploadFile(@PathVariable int id, @RequestParam("file") MultipartFile file, HttpServletRequest request ) {
 
         String licenseRegistrationFileName = carService.uploadFile(id, file);
@@ -92,12 +92,12 @@ public class CarController {
         return ResponseEntity.created(location).body(location);
     }
 
-    @GetMapping("/{id}/licenseregistrationfile/download")
+    @GetMapping(value = "/{id}/licenseregistrationfile/download")
+
     public ResponseEntity downloadFile(@PathVariable int id) {
         Resource resource = carService.downloadFile(id);
-        String mediaType = "application/octet-stream";
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(mediaType))
+                .contentType(MediaType.APPLICATION_PDF)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }

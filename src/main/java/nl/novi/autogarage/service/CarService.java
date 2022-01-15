@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -108,28 +109,37 @@ public class CarService {
 
     public String uploadFile(int id, MultipartFile file) {
 
-        String originalFilename = StringUtils.cleanPath(file.getOriginalFilename());
-        Path copyLocation = this.uploads.resolve(file.getOriginalFilename());
+        MediaType mediaType = MediaType.parseMediaType(file.getContentType());
 
-        try {
-            Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception e) {
-            throw new FileStorageException("Could not store file " + originalFilename + ". Please try again!");
-        }
+        if(!"application/pdf".equals(mediaType.toString())) {
 
-        Car existingCar = carRepository.findById(id).orElse(null);
+            throw new IllegalArgumentException("Incorrect file type, PDF required.");
 
-        if (!(file == null) && !file.isEmpty()) {
-            if (existingCar != null) {
-                existingCar.setLicenseRegistrationFileName(originalFilename);
-            } else {
-                throw new RecordNotFoundException("A car with this ID has not found");
+        } else {
+
+            String originalFilename = StringUtils.cleanPath(file.getOriginalFilename());
+            Path copyLocation = this.uploads.resolve(file.getOriginalFilename());
+
+            try {
+                Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception e) {
+                throw new FileStorageException("Could not store file " + originalFilename + ". Please try again!");
             }
+
+            Car existingCar = carRepository.findById(id).orElse(null);
+
+            if (!(file == null) && !file.isEmpty()) {
+                if (existingCar != null) {
+                    existingCar.setLicenseRegistrationFileName(originalFilename);
+                } else {
+                    throw new RecordNotFoundException("A car with this ID has not found");
+                }
+            }
+
+            Car savedCar = carRepository.save(existingCar);
+
+            return savedCar.getLicenseRegistrationFileName().toString();
         }
-
-        Car savedCar = carRepository.save(existingCar);
-
-        return savedCar.getLicenseRegistrationFileName().toString();
 
     }
 
