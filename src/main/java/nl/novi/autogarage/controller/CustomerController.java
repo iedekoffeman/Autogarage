@@ -1,6 +1,7 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.dto.CustomerRequestDto;
+import nl.novi.autogarage.model.AppointmentStatus;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.service.CustomerService;
@@ -86,5 +87,11 @@ public class CustomerController {
         customerService.addCustomerCar(id, car);
         return ResponseEntity.created(null).build();
     }
+
+    @GetMapping(value = "/{id}/appointments")
+    public ResponseEntity<Object> getCustomerAppointments(@PathVariable int id, @RequestParam AppointmentStatus status ) {
+        return ResponseEntity.ok(customerService.getCustomerAppointments(id, status));
+    }
+
 
 }

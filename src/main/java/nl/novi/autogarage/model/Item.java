@@ -1,6 +1,7 @@
 package nl.novi.autogarage.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -19,7 +20,7 @@ public class Item {
     private String name;
     private BigDecimal price;
 
-    @JsonIgnoreProperties("items")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "repair_id", referencedColumnName = "id")
     private Repair item;

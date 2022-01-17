@@ -1,5 +1,7 @@
 package nl.novi.autogarage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,8 @@ public class Customer {
 
     private String firstname;
     private String lastname;
-    //
+
+    @JsonIgnore
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> cars = new ArrayList<>();
 

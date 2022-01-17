@@ -1,5 +1,6 @@
 package nl.novi.autogarage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ public class Deficiency {
 
     private String description;
 
-    @JsonIgnoreProperties("deficiencies")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "inspection_id", referencedColumnName = "id")
     private Inspection deficiency;

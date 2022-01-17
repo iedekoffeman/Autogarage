@@ -109,9 +109,11 @@ public class CarService {
 
     public String uploadFile(int id, MultipartFile file) {
 
-        MediaType mediaType = MediaType.parseMediaType(file.getContentType());
+        MediaType uploadedMediaType = MediaType.parseMediaType(file.getContentType());
 
-        if(!"application/pdf".equals(mediaType.toString())) {
+        String acceptedMediaType = "application/pdf";
+
+        if(!acceptedMediaType.equals(uploadedMediaType.toString())) {
 
             throw new IllegalArgumentException("Incorrect file type, PDF required.");
 

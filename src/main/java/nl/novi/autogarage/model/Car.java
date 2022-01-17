@@ -2,6 +2,7 @@ package nl.novi.autogarage.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.LazyCollection;
@@ -24,14 +25,16 @@ public class Car {
     private String licenseplate;
     private String licenseRegistrationFileName ;
 
-    @JsonIgnoreProperties("cars")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer owner;
 
-    @OneToMany(mappedBy = "scheduledCar", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @OneToMany(mappedBy = "scheduledCar", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Inspection> inspections = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "scheduledCar", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Repair> repairs = new ArrayList<>();

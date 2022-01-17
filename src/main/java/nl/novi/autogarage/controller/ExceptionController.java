@@ -1,6 +1,7 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.exception.*;
+import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -82,6 +83,14 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
         details.add(ex.getLocalizedMessage());
         ErrorResponse error = new ErrorResponse("File not found", details);
         return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ConversionFailedException.class)
+    public final ResponseEntity<String> handleConflict(RuntimeException ex, WebRequest request) {
+        List<String> details = new ArrayList<>();
+        details.add(ex.getLocalizedMessage());
+        ErrorResponse error = new ErrorResponse("Conversion failed", details);
+        return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
     }
 
 

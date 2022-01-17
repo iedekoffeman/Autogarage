@@ -2,13 +2,13 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.dto.CustomerRequestDto;
 import nl.novi.autogarage.exception.RecordNotFoundException;
-import nl.novi.autogarage.model.Car;
-import nl.novi.autogarage.model.Customer;
+import nl.novi.autogarage.model.*;
 import nl.novi.autogarage.repository.CarRepository;
 import nl.novi.autogarage.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,7 +92,9 @@ public class CustomerService {
         if(optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
             return customer.getCars();
+
         } else {
+
             throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
         }
 
@@ -117,4 +119,52 @@ public class CustomerService {
 
 
     }
+
+    public List<Appointment> getCustomerAppointments(int id, AppointmentStatus status) {
+
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+
+        List<Appointment> customerRepairs = new ArrayList<>();
+
+        if(optionalCustomer.isPresent()) {
+            Customer customer = optionalCustomer.get();
+
+            Iterable <Car> customerCar = customer.getCars();
+
+            customerCar.forEach(car -> {
+
+                      Iterable<Repair> carRepairs = car.getRepairs();
+                      Iterable<Inspection> carInspections = car.getInspections();
+
+                      carRepairs.forEach(repair -> {
+
+                          if(repair.getAppointmentStatus().equals(status)) {
+
+                              customerRepairs.add(repair);
+                          }
+
+                      });
+
+                      carInspections.forEach(inspection -> {
+
+                          if (inspection.getAppointmentStatus().equals(status)) {
+
+                              customerRepairs.add(inspection);
+                          }
+
+                      });
+
+                    }
+            );
+
+            return customerRepairs;
+
+        } else {
+
+            throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
+        }
+
+
+    }
+
 }
