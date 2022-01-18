@@ -88,10 +88,5 @@ public class CustomerController {
         return ResponseEntity.created(null).build();
     }
 
-    @GetMapping(value = "/{id}/appointments")
-    public ResponseEntity<Object> getCustomerAppointments(@PathVariable int id, @RequestParam AppointmentStatus status ) {
-        return ResponseEntity.ok(customerService.getCustomerAppointments(id, status));
-    }
-
 
 }

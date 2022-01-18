@@ -1,6 +1,7 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.dto.CarRequestDto;
+import nl.novi.autogarage.model.AppointmentStatus;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.service.CarService;
 import org.apache.catalina.connector.Request;

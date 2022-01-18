@@ -27,20 +27,21 @@ public class CustomerService {
     public Customer getCustomer(int id) {
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
 
-        if(optionalCustomer.isPresent()) {
+        if (optionalCustomer.isPresent()) {
             return optionalCustomer.get();
         } else {
             throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
         }
     }
+
     public Iterable<Customer> getAllCustomers() {
 
-            return customerRepository.findAll();
+        return customerRepository.findAll();
     }
 
     public Customer getCustomerByLastName(String lastname) {
 
-            return customerRepository.findByLastnameContainingIgnoreCase(lastname);
+        return customerRepository.findByLastnameContainingIgnoreCase(lastname);
 
     }
 
@@ -72,6 +73,7 @@ public class CustomerService {
 
         customerRepository.save(existingCustomer);
     }
+
     public void partialUpdateCustomer(int id, Customer customer) {
         Customer existingCustomer = customerRepository.findById(id).orElse(null);
 
@@ -89,7 +91,7 @@ public class CustomerService {
 
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
 
-        if(optionalCustomer.isPresent()) {
+        if (optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
             return customer.getCars();
 
@@ -105,60 +107,13 @@ public class CustomerService {
 
         Optional<Customer> optionalCustomer = customerRepository.findById(id);
 
-        if(optionalCustomer.isPresent()) {
+        if (optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
-            List<Car> cars =  customer.getCars();
+            List<Car> cars = customer.getCars();
             car.setOwner(customer);
             carRepository.save(car);
             cars.add(car);
             customerRepository.save(customer);
-        } else {
-
-            throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");
-        }
-
-
-    }
-
-    public List<Appointment> getCustomerAppointments(int id, AppointmentStatus status) {
-
-        Optional<Customer> optionalCustomer = customerRepository.findById(id);
-
-        List<Appointment> customerRepairs = new ArrayList<>();
-
-        if(optionalCustomer.isPresent()) {
-            Customer customer = optionalCustomer.get();
-
-            Iterable <Car> customerCar = customer.getCars();
-
-            customerCar.forEach(car -> {
-
-                      Iterable<Repair> carRepairs = car.getRepairs();
-                      Iterable<Inspection> carInspections = car.getInspections();
-
-                      carRepairs.forEach(repair -> {
-
-                          if(repair.getAppointmentStatus().equals(status)) {
-
-                              customerRepairs.add(repair);
-                          }
-
-                      });
-
-                      carInspections.forEach(inspection -> {
-
-                          if (inspection.getAppointmentStatus().equals(status)) {
-
-                              customerRepairs.add(inspection);
-                          }
-
-                      });
-
-                    }
-            );
-
-            return customerRepairs;
-
         } else {
 
             throw new RecordNotFoundException("A Customer with ID " + id + " does not exist.");

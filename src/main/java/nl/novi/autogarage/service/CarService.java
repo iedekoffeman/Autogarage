@@ -5,7 +5,7 @@ import nl.novi.autogarage.exception.BadRequestException;
 import nl.novi.autogarage.exception.FileNotFoundException;
 import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.exception.FileStorageException;
-import nl.novi.autogarage.model.Car;
+import nl.novi.autogarage.model.*;
 import nl.novi.autogarage.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,6 +107,7 @@ public class CarService {
 
         carRepository.save(existingCar);
     }
+
 
     public String uploadFile(int id, MultipartFile file) {
 
