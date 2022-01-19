@@ -19,7 +19,7 @@ public class Customer {
     private String firstname;
     private String lastname;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("owner")
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> cars = new ArrayList<>();
 

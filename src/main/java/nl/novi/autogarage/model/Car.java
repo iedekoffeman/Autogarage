@@ -25,7 +25,7 @@ public class Car {
     private String licenseplate;
     private String licenseRegistrationFileName ;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("cars")
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer owner;
