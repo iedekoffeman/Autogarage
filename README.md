@@ -32,10 +32,10 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 #### Users die worden toegevoegd aan de database bij het opstarten van het project
 
-| Username | Password | Role                      |
+| Username | Password | Role                      | 
 |----------|----------|---------------------------|
-| Jan      | password | Administratief medewerker |
-| Piet     | password | Monteur                   |
+| monteur      | password | MONTEUR |
+| administratief_medewerker     | password | ADMINISTRATIEFMEDEWERKER                   |
 
 <br>
 
@@ -50,7 +50,7 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
    Het inladen van het project kun je doen door in de menu bar naar Git > Clone te gaan, daar de URL van deze repository in te vullen en op clone te klikken.
    <br/>
    </br>
-3. Verander de PostgreSQL credentials in application-dev.properties naar jouw eigen local settings:<br/>
+3. Verander de PostgreSQL credentials in  resources > application-dev.properties naar jouw eigen local settings:<br/>
    server.port=8081</br>
    spring.datasource.url=jdbc:postgresql://localhost:5432/autogarage<br/>
    spring.datasource.username=autogarage_admin<br/>
