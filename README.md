@@ -32,11 +32,10 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 #### Users die worden toegevoegd aan de database bij het opstarten van het project
 
-| Username | Password | Role                      | 
-|----------|----------|---------------------------|
-| monteur      | password | MONTEUR |
-| administratief_medewerker     | password | ADMINISTRATIEFMEDEWERKER                   |
-
+| Username                  | Password | Role                     | Endpoints persmissons                                          |
+|---------------------------|----------|--------------------------|----------------------------------------------------|
+| monteur                   | password | MONTEUR                  | repairs** inspections** deficiencies** items**     |
+| administratief_medewerker | password | ADMINISTRATIEFMEDEWERKER | users** customers** cars** repairs** inspections** |
 <br>
 
 ## Installatie
