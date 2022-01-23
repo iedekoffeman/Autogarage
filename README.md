@@ -126,6 +126,8 @@ De token verkrijg je door eerst het Authorization endpoint uit te voeren. De tok
 
 #### Inspections
 * GET   /api/v1/inspections
+* >  **_NOTE:_**
+  Optioneel parameter: 'date' <br/> voorbeeld: repairs?date=2022-01-06
 * POST /api/v1/inspections
 * DELETE /api/v1/inspections/{id}
 * GET /api/v1/inspections/{id}
@@ -134,6 +136,8 @@ De token verkrijg je door eerst het Authorization endpoint uit te voeren. De tok
 
 #### Repairs
 * GET   /api/v1/repairs
+>  **_NOTE:_**
+Optioneel parameter: 'date' <br/> voorbeeld: repairs?date=2022-01-06
 * POST /api/v1/repairs
 * DELETE /api/v1/repairs/{id}
 * GET /api/v1/repairs/{id}

@@ -29,9 +29,26 @@ public class RepairService {
     public Iterable<Repair> getAllRepairs(LocalDate appointmentDate) {
 
         if(appointmentDate == null) {
+
             return repairRepository.findAll();
+
         } else {
-            return repairRepository.findAllByAppointmentDate(appointmentDate);
+
+            Iterable<Repair> repairs =  repairRepository.findAllByAppointmentDate(appointmentDate);
+
+            int counter = 0;
+            for(Object i : repairs) {
+                counter++;
+            }
+
+            if(counter==0) {
+
+                throw new RecordNotFoundException("There are no repairs found for the given date");
+
+            } else {
+
+                return repairs;
+            }
         }
 
     }
@@ -49,7 +66,7 @@ public class RepairService {
         return newRepair.getId();
     }
 
-    public void updateInspection(int id, RepairRequestDto repairRequestDto) {
+    public void updateRepair(int id, RepairRequestDto repairRequestDto) {
 
         Optional<Repair> optionalRepair = repairRepository.findById(id);
 

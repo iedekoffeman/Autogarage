@@ -27,6 +27,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.any;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -58,6 +59,7 @@ public class DeficiencyControllerUnitTest {
         given(deficiencyService.getAllDeficiencies()).willReturn(allDeficiencys);
 
         mvc.perform(get("/api/v1/deficiencies")
+                        .with(user("monteur").roles("MONTEUR"))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
@@ -74,6 +76,7 @@ public class DeficiencyControllerUnitTest {
         deficiency.setDescription(deficiencyRequestDto.getDescription());
 
         mvc.perform(post("/api/v1/deficiencies")
+                        .with(user("monteur").roles("MONTEUR"))
                         .content(asJsonString(deficiencyRequestDto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());

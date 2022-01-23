@@ -30,6 +30,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.any;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -61,6 +62,7 @@ public class CarControllerUnitTest {
         given(carService.getAllCars()).willReturn(allCars);
 
         mvc.perform(get("/api/v1/cars")
+                        .with(user("administratief_medewerker").roles("ADMINISTRATIEFMEDEWERKER"))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
@@ -77,6 +79,7 @@ public class CarControllerUnitTest {
         car.setLicenseplate(carRequestDto.getLicenseplate());
 
         mvc.perform(post("/api/v1/cars")
+                        .with(user("administratief_medewerker").roles("ADMINISTRATIEFMEDEWERKER"))
                         .content(asJsonString(carRequestDto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());

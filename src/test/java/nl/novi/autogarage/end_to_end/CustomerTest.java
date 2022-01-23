@@ -36,10 +36,10 @@ public class CustomerTest {
     public void testEndpointGetCustomers() throws Exception {
 
         mvc.perform(get("/api/v1/customers")
-                        .with(user("user").roles("USER"))
+                        .with(user("administratief_medewerker").roles("ADMINISTRATIEFMEDEWERKER"))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$", hasSize(5)))
                 .andExpect(jsonPath("$[0].lastname", is("Koffeman")));
 
     }

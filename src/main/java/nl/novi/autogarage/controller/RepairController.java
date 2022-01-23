@@ -49,7 +49,7 @@ public class RepairController {
     @PutMapping(value = "{id}")
     public ResponseEntity<Object> updateRepair(@PathVariable int id, @Valid @RequestBody RepairRequestDto repairRequestDto) {
 
-        repairService.updateInspection(id, repairRequestDto);
+        repairService.updateRepair(id, repairRequestDto);
         return ResponseEntity.noContent().build();
     }
 
