@@ -122,6 +122,10 @@ De token verkrijg je door eerst het Authorization endpoint uit te voeren. De tok
   Voor upload files worden alleen PDF bestanden geaccepteerd die 500KB of kleiner zijn.
 
 * GET /api/v1/cars/{id}/licenseregistrationfile/download
+* GET api/v1/cars/{id}/carInvoice
+* >  **_NOTE:_**
+  Invoice wordt opgehaald voor Cars met repairs welke status REPAIR_COMPLETED hebben.<br/>
+  Dummy data is ingevoerd voor een car met id 1, api/v1/car/1/carInvoice
 
 
 #### Inspections

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class RepairRequestDto {
 
     @Future(message = "{error.appointmentDate.notInPast}")
-    @NotNull(message = "{error.appointmentDate.notnull}" )
+    @NotNull(message = "{error.appointmentDate.notnull}")
     private LocalDate appointmentDate;
 
     @NotNull(message = "{error.appointmentStatus.notnull}")

@@ -2,12 +2,16 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.dto.RepairRequestDto;
 import nl.novi.autogarage.exception.RecordNotFoundException;
+import nl.novi.autogarage.model.Item;
 import nl.novi.autogarage.model.Repair;
+import nl.novi.autogarage.repository.ItemRepository;
 import nl.novi.autogarage.repository.RepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -111,4 +115,5 @@ public class RepairService {
             throw new RecordNotFoundException("A repair with ID " + id + " does not exist.");
         }
     }
+
 }

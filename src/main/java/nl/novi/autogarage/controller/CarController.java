@@ -103,6 +103,11 @@ public class CarController {
                 .body(resource);
     }
 
+    @GetMapping(value = "/{id}/carInvoice")
+    public ResponseEntity<Object> getCarInvoice(@PathVariable int id) {
+        return ResponseEntity.ok(carService.getCarInvoice(id));
+    }
+
 
 
 }

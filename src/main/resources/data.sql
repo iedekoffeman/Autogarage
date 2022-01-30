@@ -32,7 +32,8 @@ VALUES
 INSERT INTO repairs (appointment_date, appointment_status, car_id)
 VALUES
     ('2022-01-28', 'APPOINTMENT_SCHEDULED', 1),
-    ('2022-01-27', 'APPOINTMENT_SCHEDULED', 2);
+    ('2022-01-27', 'APPOINTMENT_SCHEDULED', 2),
+    ('2022-02-05', 'REPAIR_COMPLETED', 1);
 
 INSERT INTO deficiencies (description, inspection_id)
 VALUES
@@ -57,4 +58,14 @@ VALUES
     ('Koppakking Elring', 64.74, 2),
     ('Remschijven vervangen', 30.25, 2),
     ('Remschijven Bosch', 20.25, 2 ),
-    ('Vloeistoffen bijgevuld', 15.99, 2);
+    ('Vloeistoffen bijgevuld', 15.99, 2),
+    ('Luchtfilter Bosch volvo', 8.82, 3),
+    ('Carburateur vervangen', 160.25, 3),
+    ('Carburatuer Type 24mm', 45.45, 3),
+    ('Koppakking vervangen', 230.25, 3),
+    ('Koppakking Elring', 64.74, 3),
+    ('Remschijven vervangen', 30.25, 3),
+    ('Remschijven Bosch', 20.25, 3 ),
+    ('Vloeistoffen bijgevuld', 15.99, 3);
+
+

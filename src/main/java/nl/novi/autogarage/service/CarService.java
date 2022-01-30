@@ -17,14 +17,14 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class CarService {
@@ -66,6 +66,61 @@ public class CarService {
         return carRepository.findAllByLicenseplateContainingIgnoreCase(licenseplate);
 
     }
+
+
+    public Map<String, Object> getCarInvoice(int id) {
+
+        Optional<Car> optionalCar = carRepository.findById(id);
+
+        TreeMap<String, Object> carInvoice = new TreeMap<String, Object>();
+
+        if (optionalCar.isPresent()) {
+
+            Car car =  optionalCar.get();
+
+            List<Repair> repairs = car.getRepairs();
+            TreeMap<String, Object> repairsAndTotalCosts  = new TreeMap<String, Object>();
+
+
+                   for (Repair repair : repairs) {
+
+
+                            if (repair.getAppointmentStatus() == AppointmentStatus.REPAIR_COMPLETED) {
+
+                                BigDecimal totalRepairCosts;
+                                LocalDate repairDate;
+
+                                totalRepairCosts = calculateTotalRepairPrice(repair);
+                                repairDate = repair.getAppointmentDate();
+
+                                String totalRepairCostsString = String.valueOf(totalRepairCosts);
+                                String repairDateString = repairDate.toString();
+
+
+                                repairsAndTotalCosts.put("Repair date: ", repairDateString);
+                                repairsAndTotalCosts.put("TotalRepairCosts: ", totalRepairCostsString);
+                                repairsAndTotalCosts.put("Items: ", repair.getItems());
+
+
+                            }
+
+                   }
+
+            carInvoice.put("Car: ", car);
+            carInvoice.put("Repairs: ", repairsAndTotalCosts);
+
+
+        } else {
+
+            throw new RecordNotFoundException("A Car with ID " + id + " does not exist.");
+        }
+
+        sortMap(carInvoice);
+
+        return carInvoice;
+
+    }
+
 
     public void deleteCar(int id) {
         carRepository.deleteById(id);
@@ -174,6 +229,31 @@ public class CarService {
             throw new RecordNotFoundException("An car with ID" + id + " does not exists.");
         }
 
+    }
+
+    public BigDecimal calculateTotalRepairPrice(Repair repair) {
+
+        final BigDecimal[] result = {new BigDecimal(0)};
+
+        List<Item> items = repair.getItems();
+
+        items.forEach( item -> {
+
+            result[0] =  result[0].add(new BigDecimal(String.valueOf(item.getPrice())));
+
+        });
+
+        return result[0];
+
+    }
+
+    public Map<String, Object> sortMap(Map unsortedMap) {
+
+        Map<String, Object> reverseSortedMap = new TreeMap<>(Collections.reverseOrder());
+
+        reverseSortedMap.putAll(unsortedMap);
+
+        return reverseSortedMap;
     }
 
 
