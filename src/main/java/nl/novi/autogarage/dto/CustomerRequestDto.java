@@ -8,7 +8,7 @@ public class CustomerRequestDto {
 
         //attributes
         @NotBlank
-        @Size(min=2, message="Firstname should have at least 2 characters.")
+        @Size(min=2, message="{error.firstName.min2Characters}")
         private String firstname;
         @NotBlank
         private String lastname;
