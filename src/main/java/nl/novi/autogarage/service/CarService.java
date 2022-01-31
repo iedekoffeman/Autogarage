@@ -129,9 +129,11 @@ public class CarService {
     public int createCar(CarRequestDto carRequestDto) {
 
         String licenseplate = carRequestDto.getLicenseplate();
-        List<Car> cars = (List<Car>) carRepository.findAllByLicenseplateContainingIgnoreCase(licenseplate);
+        List<Car> cars = new ArrayList<>();
 
-        if (cars.size() != 0) {
+        cars.add(carRepository.findAllByLicenseplateContainingIgnoreCase(licenseplate));
+
+        if (cars.size() != 1) {
             throw new BadRequestException("License plate number already exists!!");
         }
 
