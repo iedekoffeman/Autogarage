@@ -76,14 +76,14 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 De endpoints kunnen getest worden met een applicatie als Postman.<br/>
 
-De authenticatie van de applicatie werkt met een Bearer token. Deze token moet mee gegeven worden aan elk request. Dit doe je in Postman door onder Authorization, Bearer Token in te stellen en de token in te vullen. 
+De authenticatie van de applicatie werkt met een Bearer token. Deze token moet mee gegeven worden aan elk request. Dit stel je in binnen Postman onder 'Authorization' bij een Request endpoint, Bearer Token in te stellen en de token in te vullen. 
 
-De token verkrijg je door eerst het Authorization endpoint uit te voeren. De token is vervolgens 10 dagen geldig. 
+De token verkrijg je door eerst het 'Authorization' endpoint uit te voeren. De token is vervolgens 10 dagen geldig. 
 
 #### Authorization
 * POST /api/v1/authenticate
   <br/><br/>
-  In de body geef je de username en password mee. Hiervoor kan een user uit bovenstaande tabel gebruikt worden:
+  In de body geef je de username en password mee. Hiervoor kan een user uit eerder genoemde tabel (monteur/administratief_medewerker) gebruikt worden:
   <br/><br/>
 
   voorbeeld:
