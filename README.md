@@ -34,8 +34,8 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 | Username                  | Password | Role                     | Endpoints persmissons                                          |
 |---------------------------|----------|--------------------------|----------------------------------------------------|
-| monteur                   | password | MONTEUR                  | repairs** inspections** deficiencies** items**     |
-| administratief_medewerker | password | ADMINISTRATIEFMEDEWERKER | users** customers** cars** repairs** inspections** |
+| monteur                   | password | MONTEUR                  | repairs** <br/>inspections**<br/> deficiencies**<br/> items**     |
+| administratief_medewerker | password | ADMINISTRATIEFMEDEWERKER | users**<br/> customers**<br/> cars**<br/> repairs**<br/> inspections** |
 <br>
 
 ## Installatie
