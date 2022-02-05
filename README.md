@@ -85,11 +85,7 @@ De token verkrijg je door eerst het 'Authorization' endpoint uit te voeren. De t
   <br/><br/>
   In de body geef je de username en password mee. Hiervoor kan een user uit eerder genoemde tabel (monteur/administratief_medewerker) gebruikt worden:
   <br/><br/>
-
-  voorbeeld:
-  
-  
-Voor de demo gebruiken we 'password' als wachtwoord, maar normaliter is dit uiteraard niet veilig en zou je dit niet zo instellen.
+  Voor de demo gebruiken we 'password' als wachtwoord, maar normaliter is dit uiteraard niet veilig en zou je dit niet zo instellen.
     
 ```json
  {
