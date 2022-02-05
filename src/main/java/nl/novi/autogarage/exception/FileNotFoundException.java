@@ -2,12 +2,14 @@ package nl.novi.autogarage.exception;
 
 public class FileNotFoundException extends RuntimeException {
 
-    public FileNotFoundException() {
+    private String msg;
 
-        super();
+    public FileNotFoundException(String msg) {
+        this.msg = msg;
     }
-    public FileNotFoundException(String message) {
-        super(message);
+
+    public String getMsg() {
+        return msg;
     }
+
 }
-
