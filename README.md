@@ -89,7 +89,7 @@ De token verkrijg je door eerst het 'Authorization' endpoint uit te voeren. De t
   voorbeeld:
   
   
-  Voor de demo gebruiken we 'password' als wachtwoord, maar normaliter is dit uiteraard niet veilig en zou je dit niet zo instellen.
+Voor de demo gebruiken we 'password' als wachtwoord, maar normaliter is dit uiteraard niet veilig en zou je dit niet zo instellen.
     
 ```json
  {
