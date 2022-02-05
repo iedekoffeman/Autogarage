@@ -87,9 +87,19 @@ De token verkrijg je door eerst het 'Authorization' endpoint uit te voeren. De t
   <br/><br/>
 
   voorbeeld:
+  
+  
+  Voor de demo gebruiken we 'password' als wachtwoord, maar normaliter is dit uiteraard niet veilig en zou je dit niet zo instellen.
+    
 ```json
  {
-  "username": "admin",
+  "username": "administratief_medewerker",
+  "password": "password"
+ }
+```
+```json
+ {
+  "username": "monteur",
   "password": "password"
  }
 ```
