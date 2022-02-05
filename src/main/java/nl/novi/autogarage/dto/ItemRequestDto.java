@@ -1,10 +1,14 @@
 package nl.novi.autogarage.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 
 public class ItemRequestDto {
 
+    @NotBlank
     private String name;
+    @NotEmpty
     private BigDecimal price;
 
     public String getName() {

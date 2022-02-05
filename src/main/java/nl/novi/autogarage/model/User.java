@@ -1,6 +1,8 @@
 package nl.novi.autogarage.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ import java.util.Set;
 public class User {
 
     @Id
+    @NotBlank
     @Column(nullable = false, unique = true)
     private String username;
 

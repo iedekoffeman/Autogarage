@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 @Entity
@@ -18,6 +19,7 @@ public class Item {
     private int id;
 
     private String name;
+
     private BigDecimal price;
 
     @JsonIgnore

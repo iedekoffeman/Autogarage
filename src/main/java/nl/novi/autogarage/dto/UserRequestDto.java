@@ -1,10 +1,15 @@
 package nl.novi.autogarage.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 public class UserRequestDto {
 
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
     private String email;
     private Set<String> authorities;
