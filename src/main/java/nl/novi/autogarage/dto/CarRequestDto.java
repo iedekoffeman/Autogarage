@@ -3,12 +3,14 @@ package nl.novi.autogarage.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class CarRequestDto {
 
     //attributes
     @Pattern(regexp="^(?=.{8}$)(?![\\d-]+$|[a-z-]+$)[^\\W_]+(?:-[^\\W_]+)+$", message = "{error.licensePlate.notValid}")
+    @NotNull(message = "{error.licensePlate.notnull}")
     private String licenseplate;
 
     private String licenseRegistrationFileName ;
