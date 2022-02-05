@@ -35,6 +35,7 @@ public class CustomerRepositoryUnitTest {
         Customer customer = new Customer();
         customer.setFirstname("John");
         customer.setLastname("Doe");
+        customer.setPhonenumber("0681036012");
         entityManager.persist(customer);
         entityManager.flush();
 
@@ -56,6 +57,7 @@ public class CustomerRepositoryUnitTest {
         Customer customer = new Customer();
         customer.setFirstname("John");
         customer.setLastname("Doe");
+        customer.setPhonenumber("0681036012");
         entityManager.persist(customer);
         entityManager.flush();
 

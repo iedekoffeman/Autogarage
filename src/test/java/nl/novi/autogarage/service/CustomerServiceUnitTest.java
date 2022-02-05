@@ -57,6 +57,7 @@ public class CustomerServiceUnitTest {
         customer = new Customer();
         customer.setFirstname("John");
         customer.setLastname("Doe");
+        customer.setPhonenumber("0681036012");
 
 
         when(customerRepository.findById(4))
@@ -76,6 +77,7 @@ public class CustomerServiceUnitTest {
         customer = new Customer();
         customer.setFirstname("John");
         customer.setLastname("Doe");
+        customer.setPhonenumber("0681036012");
 
         when(customerRepository.findByLastnameContainingIgnoreCase(customer.getLastname()))
                 .thenReturn(customer);
@@ -113,8 +115,10 @@ public class CustomerServiceUnitTest {
         Customer customer2 = new Customer();
         customer1.setFirstname("John");
         customer1.setLastname("Doe");
+        customer1.setPhonenumber("0681036012");
         customer2.setFirstname("Jane");
         customer2.setLastname("Roe");
+        customer2.setPhonenumber("0612345678");
         customer.add(customer1);
         customer.add(customer2);
 
@@ -164,10 +168,12 @@ public class CustomerServiceUnitTest {
         customerRequestDto = new CustomerRequestDto();
         customerRequestDto.setFirstname("John");
         customerRequestDto.setLastname("Doe");
+        customerRequestDto.setPhonenumber("0681036012");
 
         customer = new Customer();
         customer.setFirstname(customerRequestDto.getFirstname());
         customer.setLastname(customerRequestDto.getLastname());
+        customer.setPhonenumber(customerRequestDto.getPhonenumber());
 
         when(customerRepository.save(any(Customer.class)))
                 .thenReturn(customer);

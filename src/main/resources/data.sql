@@ -9,13 +9,13 @@ VALUES
 ('monteur', 'ROLE_MONTEUR'),
 ('administratief_medewerker', 'ROLE_ADMINISTRATIEFMEDEWERKER');
 
-INSERT INTO customers (firstname, lastname)
+INSERT INTO customers (firstname, lastname, phonenumber)
 VALUES
-('Iede', 'Koffeman'),
-('Pieter', 'Post'),
-('Sandra', 'van Schelt'),
-('Jan', 'Janssen'),
-('Berry', 'de Vries');
+('Iede', 'Koffeman', '0681036012'),
+('Pieter', 'Post', '0612345678'),
+('Sandra', 'van Schelt', '0612345612'),
+('Jan', 'Janssen', '0612353618'),
+('Berry', 'de Vries', '0633345479');
 
 
 INSERT INTO cars (licenseplate, customer_id)

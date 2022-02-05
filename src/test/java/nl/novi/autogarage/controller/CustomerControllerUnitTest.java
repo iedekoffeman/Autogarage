@@ -55,6 +55,7 @@ public class CustomerControllerUnitTest {
         Customer customer = new Customer();
         customer.setFirstname("John");
         customer.setLastname("Doe");
+        customer.setPhonenumber("0681036012");
         List<Customer> allCustomers = Arrays.asList(customer);
 
         given(customerService.getAllCustomers()).willReturn(allCustomers);
@@ -73,10 +74,12 @@ public class CustomerControllerUnitTest {
         CustomerRequestDto customerRequestDto = new CustomerRequestDto();
         customerRequestDto.setFirstname("Iede");
         customerRequestDto.setLastname("Koffeman");
+        customerRequestDto.setPhonenumber("0681036012");
 
         Customer customer = new Customer();
         customer.setFirstname(customerRequestDto.getFirstname());
         customer.setLastname(customerRequestDto.getLastname());
+        customer.setPhonenumber(customerRequestDto.getPhonenumber());
 
         mvc.perform(post("/api/v1/customers")
                         .with(user("administratief_medewerker").roles("ADMINISTRATIEFMEDEWERKER"))

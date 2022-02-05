@@ -14,6 +14,7 @@ public class CustomerTest {
         this.customer = new Customer();
         this.customer.setFirstname("John");
         this.customer.setLastname("Doe");
+        this.customer.setPhonenumber("0681036012");
     }
 
     @Test

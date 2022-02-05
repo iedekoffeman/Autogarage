@@ -51,6 +51,7 @@ public class CustomerService {
         Customer customer = new Customer();
         customer.setFirstname(customerRequestDto.getFirstname());
         customer.setLastname(customerRequestDto.getLastname());
+        customer.setPhonenumber(customerRequestDto.getPhonenumber());
 
         Customer newCustomer = customerRepository.save(customer);
         return newCustomer.getId();
