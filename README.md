@@ -311,15 +311,88 @@ Voorbeeld Response:
 
 #### Cars
 * GET   /api/v1/cars
+
+
+  Voorbeeld Response body:
+```json
+[
+  {
+    "id": 1,
+    "licenseplate": "24-XZ-ZG",
+    "licenseRegistrationFileName": null,
+    "owner": {
+      "id": 1,
+      "firstname": "Iede",
+      "lastname": "Koffeman",
+      "phonenumber": "0681036012"
+    }
+  },
+  {
+    "id": 2,
+    "licenseplate": "GT-512-Z",
+    "licenseRegistrationFileName": null,
+    "owner": {
+      "id": 1,
+      "firstname": "Iede",
+      "lastname": "Koffeman",
+      "phonenumber": "0681036012"
+    }
+  }
+]
+``` 
 * POST /api/v1/cars
+
+
+Voorbeeld Request body:
+```json
+{
+
+  "licenseplate": "24-ZF-DD"
+
+}
+``` 
 * DELETE /api/v1/cars/{id}
 * GET /api/v1/cars/{id}
+
+
+Voorbeeld Response body:
+```json
+{
+  "id": 1,
+  "licenseplate": "24-XZ-ZG",
+  "licenseRegistrationFileName": null,
+  "owner": {
+    "id": 1,
+    "firstname": "Iede",
+    "lastname": "Koffeman",
+    "phonenumber": "0681036012"
+  }
+}
+``` 
 * PUT /api/v1/cars/{id}
+
+Voorbeeld Request body:
+```json
+{
+
+  "licenseplate": "GT-512-Z"
+
+}
+``` 
 * PATCH /api/v1/cars/{id}
+
+Voorbeeld Request body:
+```json
+{
+  "licenseplate": "69-XT-GR"
+}
+``` 
 * POST /api/v1/cars/{id}/licenseregistrationfile/upload<br/>
 >  **_NOTE:_**
   Voor upload files worden alleen PDF bestanden geaccepteerd die 500KB of kleiner zijn.
 
+
+> **_NOTE:_** <br/>Body: form-data <br/> key: file <br/>value: pdf file 
 * GET /api/v1/cars/{id}/licenseregistrationfile/download
 * GET api/v1/cars/{id}/carInvoice
 * >  **_NOTE:_**

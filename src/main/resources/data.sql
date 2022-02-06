@@ -18,11 +18,11 @@ VALUES
 ('Berry', 'de Vries', '0633345479');
 
 
-INSERT INTO cars (licenseplate, customer_id)
+INSERT INTO cars (license_registration_file_name, licenseplate, customer_id)
 VALUES
-    ('24-XZ-ZG', 1),
-    ('GT-512-Z', 1),
-    ('XB-392-J', 2);
+    ('examplepdf.pdf', '24-XZ-ZG', 1),
+    ('', 'GT-512-Z', 1),
+    ('','XB-392-J', 2);
 
 INSERT INTO inspections (appointment_date, appointment_status, car_id)
 VALUES
