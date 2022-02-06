@@ -28,6 +28,9 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 4. Authorization verplicht. (Bearer(JWT) token) zie sectie endpoints. 
 
 #### Er is een export met endpoints vanuit postman toegevoegd in de documentation directory van dit project.
+Hoe importeer ik de endpoint collections in postman? <br/><br/>
+Hier onder staat een goede beschrijving inclusief screenshots:<br/>
+https://kb.datamotion.com/?ht_kb=postman-instructions-for-exporting-and-importing
 <br/>
 
 #### Users die worden toegevoegd aan de database bij het opstarten van het project
