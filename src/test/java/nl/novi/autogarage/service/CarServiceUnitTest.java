@@ -2,19 +2,13 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.AutogarageApplication;
 import nl.novi.autogarage.dto.CarRequestDto;
-import nl.novi.autogarage.dto.CustomerRequestDto;
-import nl.novi.autogarage.exception.BadRequestException;
-import nl.novi.autogarage.exception.RecordNotFoundException;
+
 import nl.novi.autogarage.model.Car;
-import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.repository.CarRepository;
-import nl.novi.autogarage.repository.CustomerRepository;
-import org.hamcrest.Matchers;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.record.Record;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
@@ -34,7 +28,6 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @ContextConfiguration(classes={AutogarageApplication.class})
 @EnableConfigurationProperties
-//@WithMockUser(username = "admin", roles = {"ADMIN"})
 public class CarServiceUnitTest {
 
     @Autowired

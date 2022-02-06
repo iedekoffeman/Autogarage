@@ -18,8 +18,6 @@ import java.net.URI;
 public class CustomerController {
 
 
-    //constructor mag leeg blijven
-
     @Autowired
     private CustomerService customerService;
 
@@ -29,7 +27,6 @@ public class CustomerController {
     }
 
     @GetMapping(value =  "")
-    //ResponseEntity a class which builds a http request.
     public ResponseEntity<Object> getCustomers(@RequestParam(required = false) String lastname) {
 
         if (lastname == null || lastname.isEmpty()) {

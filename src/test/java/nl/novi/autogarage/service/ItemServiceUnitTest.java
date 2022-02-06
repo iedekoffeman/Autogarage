@@ -5,7 +5,6 @@ import nl.novi.autogarage.dto.ItemRequestDto;
 import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.model.Item;
 import nl.novi.autogarage.repository.ItemRepository;
-import nl.novi.autogarage.repository.ItemRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,6 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @ContextConfiguration(classes={AutogarageApplication.class})
 @EnableConfigurationProperties
-//@WithMockUser(username = "admin", roles = {"ADMIN"})
 public class ItemServiceUnitTest {
 
     @Autowired
@@ -73,9 +71,6 @@ public class ItemServiceUnitTest {
     void testGetItemByIdNotFoundThrowsRecordNotFoundException()  {
         int id = 10;
 
-        // Setup our mock repository
-        // Mockito
-        //       .doReturn(null).when(ItemRepository).findById(id);
 
         when(itemRepository.findById(id)).thenReturn(Optional.ofNullable(null)).thenThrow(new RecordNotFoundException("An Item with ID 10 does not exist"));
 

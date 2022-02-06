@@ -27,7 +27,6 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @ContextConfiguration(classes={AutogarageApplication.class})
 @EnableConfigurationProperties
-//@WithMockUser(username = "admin", roles = {"ADMIN"})
 public class DeficiencyServiceUnitTest {
 
     @Autowired

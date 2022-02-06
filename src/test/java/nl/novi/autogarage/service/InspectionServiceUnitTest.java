@@ -2,18 +2,15 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.AutogarageApplication;
 import nl.novi.autogarage.dto.InspectionRequestDto;
-import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.model.AppointmentStatus;
 import nl.novi.autogarage.model.Inspection;
 import nl.novi.autogarage.repository.InspectionRepository;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,7 +27,6 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @ContextConfiguration(classes={AutogarageApplication.class})
 @EnableConfigurationProperties
-//@WithMockUser(username = "admin", roles = {"ADMIN"})
 public class InspectionServiceUnitTest {
 
     @Autowired

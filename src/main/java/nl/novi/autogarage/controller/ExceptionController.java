@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@SuppressWarnings({ "unchecked", "rawtypes" })
-@ControllerAdvice//geeft aan deze controller de exceptions afvangt
+@ControllerAdvice
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)

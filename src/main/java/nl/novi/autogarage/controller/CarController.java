@@ -1,12 +1,9 @@
 package nl.novi.autogarage.controller;
 
 import nl.novi.autogarage.dto.CarRequestDto;
-import nl.novi.autogarage.model.AppointmentStatus;
 import nl.novi.autogarage.model.Car;
 import nl.novi.autogarage.service.CarService;
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import org.springframework.core.io.Resource;
-import javax.print.attribute.standard.Media;
-import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;

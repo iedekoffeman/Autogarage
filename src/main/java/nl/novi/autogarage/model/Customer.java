@@ -1,19 +1,17 @@
 package nl.novi.autogarage.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity //By using Entity annotation you say this class needs to be a table in our database
+@Entity
 @Table(name = "customers")
 public class Customer {
 
-    //attributes
-    @Id //This is the Primary Key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Define that this is a Primary key by using the @GeneratedValue annotation.
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String firstname;

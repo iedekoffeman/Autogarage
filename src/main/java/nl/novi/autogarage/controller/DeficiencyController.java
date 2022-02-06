@@ -24,7 +24,6 @@ public class DeficiencyController {
     }
 
     @GetMapping(value =  "")
-    //ResponseEntity a class which builds a http request.
     public ResponseEntity<Object> getAllDeficiencies() {
         return ResponseEntity.ok(deficiencyService.getAllDeficiencies());
     }

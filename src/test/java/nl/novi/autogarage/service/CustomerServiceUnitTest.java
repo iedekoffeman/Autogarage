@@ -2,10 +2,8 @@ package nl.novi.autogarage.service;
 
 import nl.novi.autogarage.AutogarageApplication;
 import nl.novi.autogarage.dto.CustomerRequestDto;
-import nl.novi.autogarage.exception.RecordNotFoundException;
 import nl.novi.autogarage.model.Customer;
 import nl.novi.autogarage.repository.CustomerRepository;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,7 +26,6 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @ContextConfiguration(classes={AutogarageApplication.class})
 @EnableConfigurationProperties
-//@WithMockUser(username = "admin", roles = {"ADMIN"})
 public class CustomerServiceUnitTest {
 
     @Autowired
@@ -130,25 +127,6 @@ public class CustomerServiceUnitTest {
         assertIterableEquals(customer, found);
 
     }
-//    @Test
-//    public void testCreateCustomer() {
-//
-//
-//        customerRequestDto = new CustomerRequestDto();
-//        customerRequestDto.setFirstname("John");
-//        customerRequestDto.setLastname("Doe");
-//
-//        customer = new Customer();
-//        customer.setFirstname(customerRequestDto.getFirstname());
-//        customer.setLastname(customerRequestDto.getLastname());
-//
-//        customerRepository.save(customer);
-//
-//        verify(customerRepository, times(1)).save(customerArgumentCaptor.capture());
-//        var customer1 = customerArgumentCaptor.getValue();
-//
-//        assertThat(customer1.getId()).isEqualTo(customer.getId());
-//    }
 
     @Test
     void testDeleteCustomerByID() {

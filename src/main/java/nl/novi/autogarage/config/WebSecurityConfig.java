@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,15 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             return new BCryptPasswordEncoder();
         }
 
-
-        //Deze klasse is in staat om een AuthenticationManagerBuilder te gebruiken
-        //In de auth kan je de manier van authentication opgeven. Je geeft hierin je users op.
-        //Met de throws Exception geef je aan dat deze methode een exeception zou kunnen genereren. Je genereert de exception daar niet mee.
-        //Authentication
         @Autowired
         public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-            //user + authority uit database
             auth.jdbcAuthentication().dataSource(dataSource)
                     .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?")
                     .authoritiesByUsernameQuery("SELECT username, authority FROM authorities AS a WHERE username=?");
@@ -69,7 +62,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             return super.userDetailsServiceBean();
         }
 
-        //antMatchers kijkt naar het path en bekijkt welke users toegang hebben
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http
@@ -79,19 +71,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                      .antMatchers(PATCH,"/users/{^[\\w]$}/password").authenticated()
                     .antMatchers("/users/**").hasRole("ADMINISTRATIEFMEDEWERKER")
-                    .antMatchers("/api/v1/customers/**").hasRole("ADMINISTRATIEFMEDEWERKER") //Als user mag je bij customers en alles wat erachter komt
-                    .antMatchers("/api/v1/cars/**").hasRole("ADMINISTRATIEFMEDEWERKER") //Als user mag je bij customers en alles wat erachter komt
-                    .antMatchers("/api/v1/repairs/**").hasAnyRole("MONTEUR", "ADMINISTRATIEFMEDEWERKER") //Als user mag je bij customers en alles wat erachter komt
-                    .antMatchers("/api/v1/inspections/**").hasAnyRole("MONTEUR", "ADMINISTRATIEFMEDEWERKER") //Als user mag je bij customers en alles wat erachter komt
-                    .antMatchers("/api/v1/deficiencies/**").hasAnyRole("MONTEUR") //Als user mag je bij customers en alles wat erachter komt
-                    .antMatchers("/api/v1/items/**").hasAnyRole("MONTEUR") //Als user mag je bij customers en alles wat erachter komt
-                    //.antMatchers("/admin/**").hasAnyRole("USER", "ADMIN")//Als admin mag je bij admin en alles wat erachter komt als waar de user rol toegang toe heeft.
-                    //.antMatchers(HttpMethod.GET, "Car").authenticated() //Zodra je een geldige naam en ww hebt opgegeven onafhankelijk van welke rol mag je bij deze endpoint, maar alleen maar een get doen.
-                    //.antMatchers(HttpMethod.POST, "authenticate").permitAll()//Iedereen ongeacht of je geauthenticeerd bent mag hier de get afspraak opgeven.
-                    //.anyRequest().permitAll() //De rest mag iedereen zien.
-                    //.anyRequest().denyAll()// De rest mag niemand zien.
+                    .antMatchers("/api/v1/customers/**").hasRole("ADMINISTRATIEFMEDEWERKER")
+                    .antMatchers("/api/v1/cars/**").hasRole("ADMINISTRATIEFMEDEWERKER")
+                    .antMatchers("/api/v1/repairs/**").hasAnyRole("MONTEUR", "ADMINISTRATIEFMEDEWERKER")
+                    .antMatchers("/api/v1/inspections/**").hasAnyRole("MONTEUR", "ADMINISTRATIEFMEDEWERKER")
+                    .antMatchers("/api/v1/deficiencies/**").hasAnyRole("MONTEUR")
+                    .antMatchers("/api/v1/items/**").hasAnyRole("MONTEUR")
                     .and()
-                    .csrf().disable() //cross side forgery token, zorgt ervoor dat er niet een kwetsbaarheid gebruikt kan worden om te hacken. Vooral bij websites van belang. Disablen we daarom.
+                    .csrf().disable()
                     .formLogin().disable()
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
