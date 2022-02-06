@@ -1,0 +1,1801 @@
+{
+	"info": {
+		"_postman_id": "6ccf874e-1bc8-4d74-b10c-cee07d4f0e8a",
+		"name": "Autogarage Novi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "authorization",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"monteur\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/authenticate",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "getUsers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Jari\",\r\n    \"password\": \"password\",\r\n    \"enabled\": \"true\",\r\n    \"email\": \"i.koffeman@gmail.com\",\r\n    \"authorities\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addAuthorityToUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"iede\",\r\n    \"authority\": \"ROLE_ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/users/iede/authorities",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"iede",
+								"authorities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAuthorityFromUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/users/iede/authorities/role_admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"iede",
+								"authorities",
+								"role_admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "password2",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/users/iede/password",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"iede",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "getCustomers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/customers",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						},
+						"description": "Get a list of customers"
+					},
+					"response": []
+				},
+				{
+					"name": "addCustomer",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Pieter\" ,\r\n    \"lastname\": \"Post\",\r\n    \"phonenumber\": \"0612345678\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/customers",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						},
+						"description": "Add one customer"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/customers/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"1"
+							]
+						},
+						"description": "Delete one customer "
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomersByLastname",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/customers?lastname=koffeman",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "lastname",
+									"value": "koffeman"
+								}
+							]
+						},
+						"description": "Get customers by parameter firstname"
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/customers/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"1"
+							]
+						},
+						"description": "Get one customer "
+					},
+					"response": []
+				},
+				{
+					"name": "updateCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Sandra\",\r\n    \"lastname\": \"Koffeman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/customers/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partialUpdateCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lastname\": \"van Schelt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/customers/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomerCars",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/customers/1/cars",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"1",
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addCustomerCar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licenseplate\": \"24-XZ-ZG\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/customers/1/cars",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"1",
+								"cars"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "getCars",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/cars",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addCar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"licenseplate\": \"24-ZF-DD\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/cars",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/cars/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/cars/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"licenseplate\": \"GT-512-Z\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/cars/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partialUpdateCar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licenseplate\": \"69-XT-GR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/cars/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadLicenseRegistrationFile",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "string"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/iedekoffeman/Downloads/examplepdf.pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/cars/1/licenseregistrationfile/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"1",
+								"licenseregistrationfile",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLicenseRegistrationFile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/cars/1/licenseregistrationfile/download",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"1",
+								"licenseregistrationfile",
+								"download"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCarInvoice",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/cars/1/carInvoice",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"1",
+								"carInvoice"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Repairs",
+			"item": [
+				{
+					"name": "getRepairs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/repairs?date=202-01-20",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"repairs"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "202-01-20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRepair",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n              \"appointmentDate\": \"2021-12-31\",\r\n              \"appointmentStatus\": \"APPOINTMENT_SCHEDULED\",\r\n              \"items\": []\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/repairs",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"repairs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRepair",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/repairs/repairs/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"repairs",
+								"repairs",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRepair",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/repairs/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"repairs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRepair",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointmentDate\": \"2022-01-03\",\r\n    \"appointmentStatus\": \"CUSTOMER_APPROVED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/repairs/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"repairs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partialUpdateRepair",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointmentStatus\": \"DO_NOT_CARRY_OUT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/repairs/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"repairs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inspections",
+			"item": [
+				{
+					"name": "getInspections",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/inspections?date=2021-12-28",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"inspections"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2021-12-28"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addInspection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n              \"appointmentDate\": \"2021-12-10\",\r\n              \"appointmentStatus\": \"APPOINTMENT_SCHEDULED\",\r\n              \"deficiencies\": []\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/inspections",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"inspections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteInspection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/inspections/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"inspections",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInspection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/inspections/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"inspections",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateInspection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointmentDate\": \"2022-03-03\",\r\n    \"appointmentStatus\": \"CUSTOMER_APPROVED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/inspections/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"inspections",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partialUpdateInspection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointmentStatus\": \"DO_NOT_CARRY_OUT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/inspections/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"inspections",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deficiencies",
+			"item": [
+				{
+					"name": "getDeficienies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/deficiencies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"deficiencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addDeficiency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Defecte achterlichten\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/deficiencies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"deficiencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDeficiency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/deficiencies/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"deficiencies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDeficiency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/deficiencies/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"deficiencies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDeficiency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Defecte achterlichten + bedrading\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/deficiencies/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"deficiencies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partialUpdateDeficiency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Defecte achterlichten + bedrading\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/deficiencies/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"deficiencies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "getitems",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/items",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Olie verversen\",\r\n    \"price\": 12.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/api/v1/items",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/items/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"items",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/items/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/items/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "partialUpdateItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb250ZXVyIiwiZXhwIjoxNjQ1MDA2MjMzLCJpYXQiOjE2NDQxNDIyMzN9.Fgew9vYbLMZybWo6Ous386-X15hC2jjSPGkr8Gl8h5A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/api/v1/items/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

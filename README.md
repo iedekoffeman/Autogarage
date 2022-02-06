@@ -23,9 +23,11 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 2. Het project maakt gebruik van een PostgreSQL database
 
-3. Cross-Origin is aangezet voor alle endpoints en alle origins.
+3. Het project maakt gebruik van het Springboot framework en Maven.  
 
-4. Authorization verplicht. (Bearer(JWT) token) zie sectie endpoints. 
+4. Cross-Origin is aangezet voor alle endpoints en alle origins.
+
+5. Authorization verplicht. (Bearer(JWT) token) zie sectie endpoints. 
 
 >  **_NOTE:_**
 <b>Er is een export met endpoints vanuit postman toegevoegd in de documentation directory van dit project.</b><br/></br>
@@ -33,7 +35,7 @@ Hoe importeer ik de endpoint collections in postman?<br/></br> Dit doe je door b
 
 #### Users die worden toegevoegd aan de database bij het opstarten van het project
 
-| Username                  | Password | Role                     | Endpoints persmissons                                          |
+| Username                  | Password | Role                     | Endpoints permissons                                          |
 |---------------------------|----------|--------------------------|----------------------------------------------------|
 | monteur                   | password | MONTEUR                  | repairs** <br/>inspections**<br/> deficiencies**<br/> items**     |
 | administratief_medewerker | password | ADMINISTRATIEFMEDEWERKER | users**<br/> customers**<br/> cars**<br/> repairs**<br/> inspections** |
