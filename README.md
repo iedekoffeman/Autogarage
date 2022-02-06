@@ -27,11 +27,9 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 4. Authorization verplicht. (Bearer(JWT) token) zie sectie endpoints. 
 
-#### Er is een export met endpoints vanuit postman toegevoegd in de documentation directory van dit project.
-Hoe importeer ik de endpoint collections in postman? <br/><br/>
-Hier onder staat een goede beschrijving inclusief screenshots:<br/>
-https://kb.datamotion.com/?ht_kb=postman-instructions-for-exporting-and-importing
-<br/>
+>  **_NOTE:_**
+<b>Er is een export met endpoints vanuit postman toegevoegd in de documentation directory van dit project.</b><br/></br>
+Hoe importeer ik de endpoint collections in postman?<br/></br> Dit doe je door binnen Postman naar file > import te gaan en vervolgens het json bestand te openen en op import te klikken. 
 
 #### Users die worden toegevoegd aan de database bij het opstarten van het project
 
@@ -53,11 +51,14 @@ https://kb.datamotion.com/?ht_kb=postman-instructions-for-exporting-and-importin
     <br/>
     Hier vind je een makkelijke en korte tutorial om PostGreSQL te installeren.<br/>
     https://www.postgresqltutorial.com/install-postgresql/ <br/><br/>
-2. Laad het project in Intelij. Maven zal het synchroniseren van dependencies starten en zo wordt alle dependcies die benodigd zijn binnen voor je binnen gehaald.<br/><br/>
+2. Laad het project in Intelij. Alle dependencies bevinden zich in het POM bestand wat bij het project gesloten zit. Maven zal aan de hand van dit POM bestand het synchroniseren van dependencies starten en zo worden alle dependencies die benodigd zijn automatisch voor je binnen gehaald.<br/><br/>
+   >  **_NOTE:_**
    Het inladen van het project kun je doen door in InteliJ via de menu bar naar Git > Clone te gaan, daar de URL van deze repository in te vullen en op clone te klikken.
+   <br/><br/>
+   Git repository: https://github.com/iedekoffeman/Autogarage.git
    <br/>
    </br>
-3. Verander de PostgreSQL credentials in  resources > application-dev.properties naar jouw eigen local settings:<br/>
+4. Verander de PostgreSQL credentials in  resources > application-dev.properties naar jouw eigen local settings:<br/>
    <br/>
    De huidige instellingen zijn als volgt:<br/><br/>
    server.port=8081</br>
@@ -66,11 +67,11 @@ https://kb.datamotion.com/?ht_kb=postman-instructions-for-exporting-and-importin
    spring.datasource.password=12345<br/>
    <br/>
    </br>
-4. Maak een uploads directory aan in de root directoy van de project folder of kijk of deze al bestaat.<br/> 
+5. Maak een uploads directory aan in de root directoy van de project folder of kijk of deze al bestaat.<br/> 
    v.b. ../Autogarage/uploads
 <br/>
 </br>
-5. Run het project<br/>
+6. Run het project<br/>
    Als alle stappen zijn genomen zijn de endpoints beschikbaar en kun je deze via Postman aanroepen. <br/><br/> Je kunt de bijgeleverde export van de endpoints uit postman importeren zodat deze direct beschikbaar zijn. Deze staan in de documents folder van dit project. 
 <br/>
 <br/>
