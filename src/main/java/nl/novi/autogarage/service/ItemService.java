@@ -40,6 +40,7 @@ public class ItemService {
 
         Item item = new Item();
         item.setName(itemRequestDto.getName());
+        item.setPrice(itemRequestDto.getPrice());
 
         Item newItem = itemRepository.save(item);
         return newItem.getId();

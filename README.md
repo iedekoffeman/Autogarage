@@ -164,7 +164,7 @@ Voorbeeld Response:
 * GET   /api/v1/customers
 
 
-  Voorbeeld Response body:
+  Voorbeeld Response :
 ```json
 [
   {
@@ -202,7 +202,7 @@ Voorbeeld Response:
 * GET /api/v1/customers?lastname={lastname}
 
 
-  Voorbeeld Response body:
+  Voorbeeld Response:
 ```json
 {
   "id": 1,
@@ -227,7 +227,7 @@ Voorbeeld Response:
 * GET /api/v1/customers/{id}
 
 
-  Voorbeeld Response body:
+  Voorbeeld Response:
 ```json
 {
   "id": 1,
@@ -271,7 +271,7 @@ Voorbeeld Response:
 
 * GET /api/v1/customers/{id}/cars
 
-  Voorbeeld Response body:
+  Voorbeeld Response:
 ```json
 [
   {
@@ -313,7 +313,7 @@ Voorbeeld Response:
 * GET   /api/v1/cars
 
 
-  Voorbeeld Response body:
+  Voorbeeld Response:
 ```json
 [
   {
@@ -355,7 +355,7 @@ Voorbeeld Request body:
 * GET /api/v1/cars/{id}
 
 
-Voorbeeld Response body:
+Voorbeeld Response:
 ```json
 {
   "id": 1,
@@ -394,47 +394,511 @@ Voorbeeld Request body:
 
 > **_NOTE:_** <br/>Body: form-data <br/> key: file <br/>value: pdf file 
 * GET /api/v1/cars/{id}/licenseregistrationfile/download
+
+>  **_NOTE:_**
+   Een preview van de file wordt getoond wanneer het request succesvol is uitgevoerd.
+
+
+
 * GET api/v1/cars/{id}/carInvoice
-* >  **_NOTE:_**
+>  **_NOTE:_**
   Invoice wordt opgehaald voor Cars met repairs welke status REPAIR_COMPLETED hebben.<br/>
   Dummy data is ingevoerd voor een car met id 1, api/v1/car/1/carInvoice
+
+Voorbeeld Response:
+```json
+{
+  "Car: ": {
+    "id": 1,
+    "licenseplate": "24-XZ-ZG",
+    "licenseRegistrationFileName": "examplepdf.pdf",
+    "owner": {
+      "id": 1,
+      "firstname": "Iede",
+      "lastname": "Koffeman",
+      "phonenumber": "0681036012"
+    }
+  },
+  "Repairs: ": {
+    "Items: ": [
+      {
+        "id": 13,
+        "name": "Luchtfilter Bosch volvo",
+        "price": 8.82
+      },
+      {
+        "id": 14,
+        "name": "Carburateur vervangen",
+        "price": 160.25
+      },
+      {
+        "id": 15,
+        "name": "Carburatuer Type 24mm",
+        "price": 45.45
+      },
+      {
+        "id": 16,
+        "name": "Koppakking vervangen",
+        "price": 230.25
+      },
+      {
+        "id": 17,
+        "name": "Koppakking Elring",
+        "price": 64.74
+      },
+      {
+        "id": 18,
+        "name": "Remschijven vervangen",
+        "price": 30.25
+      },
+      {
+        "id": 19,
+        "name": "Remschijven Bosch",
+        "price": 20.25
+      },
+      {
+        "id": 20,
+        "name": "Vloeistoffen bijgevuld",
+        "price": 15.99
+      }
+    ],
+    "Repair date: ": "2022-02-05",
+    "TotalRepairCosts: ": "576.00"
+  }
+}
+``` 
 
 
 #### Inspections
 * GET   /api/v1/inspections
 >  **_NOTE:_**
-  Optioneel parameter: 'date' <br/> voorbeeld: repairs?date=2022-01-06
+  Optioneel parameter: 'date' <br/> voorbeeld: repairs?date=2022-01-28
+
+Voorbeeld Response:
+```json
+[
+  {
+    "id": 1,
+    "appointmentDate": "2021-12-28",
+    "appointmentStatus": "APPOINTMENT_SCHEDULED",
+    "deficiencies": [
+      {
+        "id": 1,
+        "description": "Remvloeistof op"
+      },
+      {
+        "id": 2,
+        "description": "Lamp rechtsvoor kapot"
+      },
+      {
+        "id": 3,
+        "description": "Luchtfilter aan vervanging toe"
+      },
+      {
+        "id": 4,
+        "description": "Carburateur moet vervangen worden"
+      }
+    ]
+  }
+]
+``` 
+
 * POST /api/v1/inspections
+
+
+Voorbeeld Request body:
+```json
+{
+
+  "appointmentDate": "2022-04-10",
+  "appointmentStatus": "APPOINTMENT_SCHEDULED",
+  "deficiencies": []
+
+}
+``` 
 * DELETE /api/v1/inspections/{id}
 * GET /api/v1/inspections/{id}
+
+
+Voorbeeld Request body:
+```json
+{
+  "appointmentDate": "2022-03-03",
+  "appointmentStatus": "CUSTOMER_APPROVED"
+}
+``` 
 * PUT /api/v1/inspections/{id}
+
+Voorbeeld Request body:
+```json
+{
+  "appointmentDate": "2022-03-03",
+  "appointmentStatus": "CUSTOMER_APPROVED"
+}
+``` 
+
 * PATCH /api/v1/inspections/{id}
+
+Voorbeeld Request body:
+```json
+{
+  "appointmentStatus": "DO_NOT_CARRY_OUT"
+}
+``` 
 
 #### Repairs
 * GET   /api/v1/repairs
 >  **_NOTE:_**
-Optioneel parameter: 'date' <br/> voorbeeld: repairs?date=2022-01-06
+Optioneel parameter: 'date' <br/> voorbeeld: repairs?date=2022-01-28
+
+Voorbeeld Response:
+```json
+[
+  {
+    "id": 1,
+    "appointmentDate": "2022-01-28",
+    "appointmentStatus": "APPOINTMENT_SCHEDULED",
+    "items": [
+      {
+        "id": 1,
+        "name": "Remvloeistof vervangen",
+        "price": 11.99
+      },
+      {
+        "id": 2,
+        "name": "Remvloeistof Motul 100948",
+        "price": 10.00
+      },
+      {
+        "id": 3,
+        "name": "Lamp rechtsvoor vervangen",
+        "price": 5.30
+      },
+      {
+        "id": 4,
+        "name": "Lamp 5v",
+        "price": 1.99
+      },
+      {
+        "id": 5,
+        "name": "Luchtfilter Bosch volvo",
+        "price": 8.82
+      },
+      {
+        "id": 6,
+        "name": "Carburateur vervangen",
+        "price": 160.25
+      },
+      {
+        "id": 7,
+        "name": "Carburatuer Type 24mm",
+        "price": 45.45
+      }
+    ]
+  }
+]
+``` 
+
 * POST /api/v1/repairs
+
+Voorbeeld Request body:
+```json
+{
+
+  "appointmentDate": "2022-03-31",
+  "appointmentStatus": "APPOINTMENT_SCHEDULED",
+  "items": []
+
+}
+``` 
+
 * DELETE /api/v1/repairs/{id}
 * GET /api/v1/repairs/{id}
+
+Voorbeeld Response:
+```json
+{
+  "id": 1,
+  "appointmentDate": "2022-01-28",
+  "appointmentStatus": "APPOINTMENT_SCHEDULED",
+  "items": [
+    {
+      "id": 1,
+      "name": "Remvloeistof vervangen",
+      "price": 11.99
+    },
+    {
+      "id": 2,
+      "name": "Remvloeistof Motul 100948",
+      "price": 10.00
+    },
+    {
+      "id": 3,
+      "name": "Lamp rechtsvoor vervangen",
+      "price": 5.30
+    },
+    {
+      "id": 4,
+      "name": "Lamp 5v",
+      "price": 1.99
+    },
+    {
+      "id": 5,
+      "name": "Luchtfilter Bosch volvo",
+      "price": 8.82
+    },
+    {
+      "id": 6,
+      "name": "Carburateur vervangen",
+      "price": 160.25
+    },
+    {
+      "id": 7,
+      "name": "Carburatuer Type 24mm",
+      "price": 45.45
+    }
+  ]
+}
+``` 
 * PUT /api/v1/repairs/{id}
+
+Voorbeeld Request body:
+```json
+{
+  "appointmentDate": "2022-03-28",
+  "appointmentStatus": "CUSTOMER_APPROVED"
+}
+``` 
+
 * PATCH /api/v1/repairs/{id}
+
+Voorbeeld Request body:
+```json
+{
+  "appointmentStatus": "DO_NOT_CARRY_OUT"
+}
+``` 
 
 #### Deficiencies
 * GET   /api/v1/deficiencies
+
+Voorbeeld Response:
+```json
+[
+  {
+    "id": 1,
+    "description": "Remvloeistof op"
+  },
+  {
+    "id": 2,
+    "description": "Lamp rechtsvoor kapot"
+  },
+  {
+    "id": 3,
+    "description": "Luchtfilter aan vervanging toe"
+  },
+  {
+    "id": 4,
+    "description": "Carburateur moet vervangen worden"
+  },
+  {
+    "id": 5,
+    "description": "Koppakking is lek"
+  },
+  {
+    "id": 6,
+    "description": "Remschijven moeten vervangen worden"
+  },
+  {
+    "id": 7,
+    "description": "Vloeistoffen moeten bijgevuld worden"
+  }
+]
+``` 
+
 * POST /api/v1/deficiencies
+
+Voorbeeld Request body:
+```json
+{
+  "description": "Defecte achterlichten"
+}
+``` 
+
 * DELETE /api/v1/deficiencies/{id}
 * GET /api/v1/deficiencies/{id}
+
+Voorbeeld Response:
+```json
+{
+  "id": 1,
+  "description": "Remvloeistof op"
+}
+``` 
 * PUT /api/v1/deficiencies/{id}
+
+Voorbeeld Request:
+```json
+{
+  "description": "Defecte achterlichten + bedrading"
+}
+``` 
 * PATCH /api/v1/deficiencies/{id}
+
+Voorbeeld Request:
+```json
+{
+  "description": "Defecte achterlichten + bedrading"
+}
+``` 
 
 #### Items
 * GET   /api/v1/items
+
+Voorbeeld Response:
+```json
+[
+  {
+    "id": 1,
+    "name": "Remvloeistof vervangen",
+    "price": 11.99
+  },
+  {
+    "id": 2,
+    "name": "Remvloeistof Motul 100948",
+    "price": 10.00
+  },
+  {
+    "id": 3,
+    "name": "Lamp rechtsvoor vervangen",
+    "price": 5.30
+  },
+  {
+    "id": 4,
+    "name": "Lamp 5v",
+    "price": 1.99
+  },
+  {
+    "id": 5,
+    "name": "Luchtfilter Bosch volvo",
+    "price": 8.82
+  },
+  {
+    "id": 6,
+    "name": "Carburateur vervangen",
+    "price": 160.25
+  },
+  {
+    "id": 7,
+    "name": "Carburatuer Type 24mm",
+    "price": 45.45
+  },
+  {
+    "id": 8,
+    "name": "Koppakking vervangen",
+    "price": 230.25
+  },
+  {
+    "id": 9,
+    "name": "Koppakking Elring",
+    "price": 64.74
+  },
+  {
+    "id": 10,
+    "name": "Remschijven vervangen",
+    "price": 30.25
+  },
+  {
+    "id": 11,
+    "name": "Remschijven Bosch",
+    "price": 20.25
+  },
+  {
+    "id": 12,
+    "name": "Vloeistoffen bijgevuld",
+    "price": 15.99
+  },
+  {
+    "id": 13,
+    "name": "Luchtfilter Bosch volvo",
+    "price": 8.82
+  },
+  {
+    "id": 14,
+    "name": "Carburateur vervangen",
+    "price": 160.25
+  },
+  {
+    "id": 15,
+    "name": "Carburatuer Type 24mm",
+    "price": 45.45
+  },
+  {
+    "id": 16,
+    "name": "Koppakking vervangen",
+    "price": 230.25
+  },
+  {
+    "id": 17,
+    "name": "Koppakking Elring",
+    "price": 64.74
+  },
+  {
+    "id": 18,
+    "name": "Remschijven vervangen",
+    "price": 30.25
+  },
+  {
+    "id": 19,
+    "name": "Remschijven Bosch",
+    "price": 20.25
+  },
+  {
+    "id": 20,
+    "name": "Vloeistoffen bijgevuld",
+    "price": 15.99
+  }
+]
+``` 
 * POST /api/v1/items
+
+
+Voorbeeld Request:
+```json
+{
+  "name": "Olie verversen",
+  "price": 12.99
+}
+```
+
 * DELETE /api/v1/items/{id}
 * GET /api/v1/items/{id}
+
+Voorbeeld Response:
+```json
+{
+  "id": 1,
+  "name": "Remvloeistof vervangen",
+  "price": 11.99
+}
+```
 * PUT /api/v1/items/{id}
+
+Voorbeeld Request:
+```json
+{
+  "name": "Olie verversen + filter vervangen",
+  "price": 13.99
+}
+```
 * PATCH /api/v1/items/{id}
+
+Voorbeeld Request:
+```json
+{
+  "price": 15.99
+}
+```
 
 
 
