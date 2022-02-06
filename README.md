@@ -86,7 +86,7 @@ De token verkrijg je door eerst het 'Authorization' endpoint uit te voeren. De t
   In de body geef je de username en password mee. Hiervoor kan een user uit eerder genoemde tabel (monteur/administratief_medewerker) gebruikt worden:
   <br/><br/>
   Voor de demo gebruiken we 'password' als wachtwoord, maar normaliter is dit uiteraard niet veilig en zou je dit niet zo instellen.
-    
+   <br/><br/>Voorbeeld van de Request body:
 ```json
  {
   "username": "administratief_medewerker",
@@ -99,10 +99,45 @@ De token verkrijg je door eerst het 'Authorization' endpoint uit te voeren. De t
   "password": "password"
  }
 ```
-
+Voorbeeld Response:
+```json
+ {
+    "jwt":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdGllZl9tZWRld2Vya2VyIiwiZXhwIjoxNjQ0Nzc5OTA2LCJpYXQiOjE2NDM5MTU5MDZ9.zgI-uMAMRuNId8VaIvS2KfeBMOK9qQZJwG6GezbFosQ"
+ }
+```
 
 #### Users
 * GET   /api/v1/users
+
+```json
+[
+  {
+    "username": "monteur",
+    "password": "$2y$10$pn4mvxgRMiFSelR/8LbTE.VgPVF4eYQFR0bd.vmkznvnesWfnUwxK",
+    "enabled": true,
+    "email": "dummy@novi.nl",
+    "authorities": [
+      {
+        "username": "monteur",
+        "authority": "ROLE_MONTEUR"
+      }
+    ]
+  },
+  {
+    "username": "administratief_medewerker",
+    "password": "$2y$10$pn4mvxgRMiFSelR/8LbTE.VgPVF4eYQFR0bd.vmkznvnesWfnUwxK",
+    "enabled": true,
+    "email": "dummy@novi.nl",
+    "authorities": [
+      {
+        "username": "administratief_medewerker",
+        "authority": "ROLE_ADMINISTRATIEFMEDEWERKER"
+      }
+    ]
+  }
+]
+```
+
 * POST /api/v1/users
 * DELETE /api/v1/users/{username}
 * GET /api/v1/users/{username}
