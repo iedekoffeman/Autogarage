@@ -86,7 +86,8 @@ De token verkrijg je door eerst het 'Authorization' endpoint uit te voeren. De t
   In de body geef je de username en password mee. Hiervoor kan een user uit eerder genoemde tabel (monteur/administratief_medewerker) gebruikt worden:
   <br/><br/>
   Voor de demo gebruiken we 'password' als wachtwoord, maar normaliter is dit uiteraard niet veilig en zou je dit niet zo instellen.
-   <br/><br/>Voorbeeld van de Request body:
+
+<br/>Voorbeeld Request body:
 ```json
  {
   "username": "administratief_medewerker",
@@ -109,6 +110,7 @@ Voorbeeld Response:
 #### Users
 * GET   /api/v1/users
 
+Voorbeeld Response:
 ```json
 [
   {
@@ -138,7 +140,18 @@ Voorbeeld Response:
 ]
 ```
 
-* POST /api/v1/users
+* POST /api/v1/users <br/><br/>
+  Voorbeeld Request body:
+```json
+{
+  "username": "Jari",
+  "password": "password",
+  "enabled": "true",
+  "email": "i.koffeman@gmail.com",
+  "authorities": []
+}
+```  
+
 * DELETE /api/v1/users/{username}
 * GET /api/v1/users/{username}
 * PUT /api/v1/users/{username}
@@ -149,14 +162,152 @@ Voorbeeld Response:
 
 #### Customers
 * GET   /api/v1/customers
+
+
+  Voorbeeld Response body:
+```json
+[
+  {
+    "id": 1,
+    "firstname": "Iede",
+    "lastname": "Koffeman",
+    "phonenumber": "0681036012",
+    "cars": [
+      {
+        "id": 1,
+        "licenseplate": "24-XZ-ZG",
+        "licenseRegistrationFileName": null
+      },
+      {
+        "id": 2,
+        "licenseplate": "GT-512-Z",
+        "licenseRegistrationFileName": null
+      }
+    ]
+  }
+]
+```  
 * POST /api/v1/customers
+
+
+  Voorbeeld Request body:
+```json
+{
+  "firstname": "Pieter" ,
+  "lastname": "Post",
+  "phonenumber": "0612345678"
+}
+```  
 * DELETE /api/v1/customers/{id}
 * GET /api/v1/customers?lastname={lastname}
+
+
+  Voorbeeld Response body:
+```json
+{
+  "id": 1,
+  "firstname": "Iede",
+  "lastname": "Koffeman",
+  "phonenumber": "0681036012",
+  "cars": [
+    {
+      "id": 1,
+      "licenseplate": "24-XZ-ZG",
+      "licenseRegistrationFileName": null
+    },
+    {
+      "id": 2,
+      "licenseplate": "GT-512-Z",
+      "licenseRegistrationFileName": null
+    }
+  ]
+}
+```  
+
 * GET /api/v1/customers/{id}
+
+
+  Voorbeeld Response body:
+```json
+{
+  "id": 1,
+  "firstname": "Iede",
+  "lastname": "Koffeman",
+  "phonenumber": "0681036012",
+  "cars": [
+    {
+      "id": 1,
+      "licenseplate": "24-XZ-ZG",
+      "licenseRegistrationFileName": null
+    },
+    {
+      "id": 2,
+      "licenseplate": "GT-512-Z",
+      "licenseRegistrationFileName": null
+    }
+  ]
+}
+``` 
 * PUT /api/v1/customers/{id}
+
+
+  Voorbeeld Request body:
+```json
+{
+  "firstname": "Sandra",
+  "lastname": "Koffeman"
+}
+``` 
+
 * PATCH /api/v1/customers/{id}
+
+
+  Voorbeeld Request body:
+```json
+{
+  "lastname": "van Schelt"
+}
+``` 
+
 * GET /api/v1/customers/{id}/cars
+
+  Voorbeeld Response body:
+```json
+[
+  {
+    "id": 1,
+    "licenseplate": "24-XZ-ZG",
+    "licenseRegistrationFileName": null,
+    "owner": {
+      "id": 1,
+      "firstname": "Iede",
+      "lastname": "Koffeman",
+      "phonenumber": "0681036012"
+    }
+  },
+  {
+    "id": 2,
+    "licenseplate": "GT-512-Z",
+    "licenseRegistrationFileName": null,
+    "owner": {
+      "id": 1,
+      "firstname": "Iede",
+      "lastname": "Koffeman",
+      "phonenumber": "0681036012"
+    }
+  }
+]
+``` 
+
 * POST /api/v1/customers/{id}/cars
+
+
+  Voorbeeld Request body:
+```json
+{
+  "licenseplate": "24-XZ-ZG"
+}
+``` 
 
 #### Cars
 * GET   /api/v1/cars
