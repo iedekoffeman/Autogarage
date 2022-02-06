@@ -76,7 +76,16 @@ Met dit project kan een autogarage het proces van keuringen en reparaties rondom
 
 De endpoints kunnen getest worden met een applicatie als Postman.<br/>
 
-De authenticatie van de applicatie werkt met een Bearer token. Deze token moet mee gegeven worden aan elk request. Dit stel je in binnen Postman onder 'Authorization' bij een Request endpoint, Bearer Token in te stellen en de token in te vullen. 
+>  **_NOTE:_**
+<b>Authentication endpoints:</b><br/><br/>
+De authenticatie van de applicatie werkt met een Bearer token. Deze token moet mee gegeven worden aan elk request. Dit stel je in binnen Postman onder 'Authorization'<br/> 
+<br/>Bij een Request endpoint (binnen postman) kies je op de tab 'Authorization' voor het Type: Bearer token, onder 'Token' vul je het 'JWT token' in welke je via het 'Authorization' endpoint kunt verkrijgen.<br/><br/> Deze token geeft toegang voor elk endpoint waar deze user voor geauthorizeerd is. De rechten per user vind je in de tabel bovenaan deze handleiding.
+
+
+
+
+
+
 
 De token verkrijg je door eerst het 'Authorization' endpoint uit te voeren. De token is vervolgens 10 dagen geldig. 
 
